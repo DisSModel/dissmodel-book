@@ -1,0 +1,1834 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical reference and ecosystem guide for DisSModel — a Python-native, FAIR-aligned, cloud-ready alternative to TerraME/LUCCME.
+">
+      
+      
+        <meta name="author" content="LambdaGeo Research Group">
+      
+      
+      
+        <link rel="prev" href="../ch09_platform/">
+      
+      
+        <link rel="next" href="../../part5-reference/ch11_migration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Ch 10: Spatial Data Cubes - DisSModel Book</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/lambdageo.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-10-spatial-data-cubes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DisSModel Book" class="md-header__button md-logo" aria-label="DisSModel Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DisSModel Book
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch 10: Spatial Data Cubes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DisSModel Book" class="md-nav__button md-logo" aria-label="DisSModel Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DisSModel Book
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part I — DisSModel Core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part I — DisSModel Core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch01_why_dissmodel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 1: Why DisSModel — trajectory and motivation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch02_core_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 2: Core concepts (SpatialModel, ModelExecutor, substrates)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch03_getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 3: Installation and first model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part II — Simulation Paradigms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part II — Simulation Paradigms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch04_sysdyn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 4: System Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch05_ca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 5: Cellular Automata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch06_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 6: Agent-Based Modeling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part III — Domain Modeling: Land Use & Coastal Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part III — Domain Modeling: Land Use & Coastal Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-domain/ch07_disslucc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 7: DisSLUCC — Land Use and Cover Change Modeling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-domain/ch08_coastal_case_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 8: Case Study — Coastal Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part IV — Data & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part IV — Data & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch09_platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 9: The DisSModel Platform — Execution & Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 10: Spatial Data Cubes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 10: Spatial Data Cubes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101-what-is-a-data-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 What is a data cube
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102-two-regimes-the-cube-at-rest-the-cube-in-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Two regimes: the cube at rest, the cube in motion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-disscube-the-cube-at-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 disscube: the cube at rest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-basic-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Basic flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-the-bridge-from-the-cube-at-rest-to-the-cube-in-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 The bridge: from the cube at rest to the cube in motion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 The bridge: from the cube at rest to the cube in motion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terrame-fillcellularspace-correspondence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TerraME fillCellularSpace correspondence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106-relationship-to-chapter-7-disslucc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 Relationship to Chapter 7 (DisSLUCC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107-multiple-cubes-and-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.7 Multiple cubes and coupling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#108-positioning-disscube-and-the-brazil-data-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.8 Positioning: disscube and the Brazil Data Cube
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part V — Migration & Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part V — Migration & Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reference/ch11_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 11: Migrating from TerraME/LUCCME to DisSModel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reference/ch12_architecture_contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 12: Architecture decisions and how to contribute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101-what-is-a-data-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 What is a data cube
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102-two-regimes-the-cube-at-rest-the-cube-in-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Two regimes: the cube at rest, the cube in motion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-disscube-the-cube-at-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 disscube: the cube at rest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-basic-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Basic flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-the-bridge-from-the-cube-at-rest-to-the-cube-in-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 The bridge: from the cube at rest to the cube in motion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 The bridge: from the cube at rest to the cube in motion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terrame-fillcellularspace-correspondence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TerraME fillCellularSpace correspondence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106-relationship-to-chapter-7-disslucc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 Relationship to Chapter 7 (DisSLUCC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107-multiple-cubes-and-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.7 Multiple cubes and coupling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#108-positioning-disscube-and-the-brazil-data-cube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.8 Positioning: disscube and the Brazil Data Cube
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-10-spatial-data-cubes">Chapter 10: Spatial Data Cubes<a class="headerlink" href="#chapter-10-spatial-data-cubes" title="Permanent link">&para;</a></h1>
+<p><em>Part IV — Data &amp; Infrastructure</em></p>
+<p>Implemented by the <a href="https://github.com/DisSModel/disscube"><code>disscube</code></a> package.</p>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Know what a data cube is, and why it's a semantic guarantee (alignment
+  plus indexability), not a file format</li>
+<li>Understand why the ecosystem needs <em>two</em> cube implementations — one at
+  rest, one in motion — and what each is built for</li>
+<li>Register a grid and a spatial source, and derive a variable</li>
+<li>Bridge a derived cube into a running DisSModel simulation</li>
+</ul>
+<h2 id="101-what-is-a-data-cube">10.1 What is a data cube<a class="headerlink" href="#101-what-is-a-data-cube" title="Permanent link">&para;</a></h2>
+<p>In Earth-observation literature (the datacube manifesto tradition, the
+Open Data Cube project, the Brazil Data Cube), a <strong>data cube</strong> is a
+regular multidimensional array — typically <code>(variable, time, y, x)</code> —
+with three properties that distinguish it from an arbitrary collection
+of files:</p>
+<ol>
+<li><strong>Spatial alignment.</strong> Every variable and every date shares the same
+   grid — same CRS, same resolution, same origin. Cell <code>(i, j)</code> is the
+   same physical location in any variable, at any time.</li>
+<li><strong>An explicit, regular time axis.</strong> Time is an indexable dimension,
+   not a filename suffix or an accident of capture dates.</li>
+<li><strong>Analysis-ready.</strong> The cost of preparation — reprojecting,
+   resampling, aligning — is paid once, at ingestion, not repeated on
+   every query.</li>
+</ol>
+<p>A common misconception is that a data cube must be one giant file. It
+doesn't have to be — the reference implementation in this space, the
+<a href="https://www.opendatacube.org/">Open Data Cube</a>, is an index (Postgres)
+plus individual files on disk; the "cube" materializes on demand when a
+query assembles the aligned array from the index. <strong>A cube is a semantic
+guarantee — alignment plus indexability — not a storage format.</strong> That
+distinction is what the rest of this chapter is built on.</p>
+<p><strong>Materialized vs. virtual.</strong> A cube can be <em>materialized</em> (pixels
+already computed and written to disk as a new product) or <em>virtual</em>
+(nothing computed yet — the array is a promise, resolved only when
+queried). Both are legitimate; which one to use is an architectural
+choice, not a universal rule, and Section 10.9 comes back to exactly
+this choice when contrasting <code>disscube</code> with the Brazil Data Cube and
+Google Earth Engine.</p>
+<h2 id="102-two-regimes-the-cube-at-rest-the-cube-in-motion">10.2 Two regimes: the cube at rest, the cube in motion<a class="headerlink" href="#102-two-regimes-the-cube-at-rest-the-cube-in-motion" title="Permanent link">&para;</a></h2>
+<p>The DisSModel ecosystem's data-cube story is not one implementation —
+it's two, deliberately, because a data cube is used for genuinely
+different things depending on where it sits in the pipeline:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>disscube</code> (rest)</th>
+<th><code>RasterBackend</code> (motion)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role</td>
+<td>Cube infrastructure</td>
+<td>One cube instance</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>Yes — Zarr + SQLite/JSON catalog</td>
+<td>No — lives in process memory</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>A <em>family</em> of cubes, multi-grid</td>
+<td>One cube, one grid, one run</td>
+</tr>
+<tr>
+<td>Mutation</td>
+<td>New <code>DerivedVariable</code> per derivation</td>
+<td>In-place array writes, every tick</td>
+</tr>
+<tr>
+<td>Typical consumer</td>
+<td>Analysis, cataloging, publication</td>
+<td>A running <code>Environment</code> (Chapter 2)</td>
+</tr>
+</tbody>
+</table>
+<p>Both satisfy the definition in 10.1 — <code>RasterBackend</code> enforces spatial
+alignment by construction (one <code>shape</code>/<code>transform</code>/<code>crs</code> for every
+variable it holds), exposes an indexable time axis (<code>time_coords</code>, with
+ceiling lookup), and assumes alignment cost was already paid before data
+reaches it. It is a cube. It just isn't the ecosystem's cube
+<em>infrastructure</em> — that's <code>disscube</code>'s job. The split mirrors the Open
+Data Cube itself: an index (<code>disscube</code>'s catalog) is a different thing
+from the <code>xarray.Dataset</code> a query returns (<code>RasterBackend</code>, once a
+<code>Environment</code> starts mutating it tick by tick).</p>
+<p><strong>Two species of in-memory instance.</strong> There's a finer distinction worth
+naming: the <code>xarray.Dataset</code> that tools like <code>odc-stac</code>'s <code>load()</code> return
+is typically <strong>lazy</strong> — backed by Dask, a graph of pending operations,
+nothing in RAM until <code>.compute()</code>. That's ideal for analysis: define the
+whole chain (clip, compute an index, reduce over time), and only then do
+bytes move, once, optimized. <code>RasterBackend</code> is <strong>materialized</strong> — a
+concrete <code>np.ndarray</code>, available immediately. That's mandatory for
+simulation: a cellular automaton needs the <em>concrete</em> value at step <code>t</code>
+to decide the transition to <code>t+1</code>; laziness is fundamentally incompatible
+with that sequential dependency (a lazy cube run through a CA would
+accumulate one new Dask graph layer per tick, recomputing the whole
+history on every evaluation). Neither is a better substrate in general —
+each fits its own regime. The boundary between them is <code>.compute()</code>
+(implicit inside <code>RasterBackend.from_xarray</code>), the exact moment a cube
+crosses from rest into motion.</p>
+<h2 id="103-disscube-the-cube-at-rest">10.3 <code>disscube</code>: the cube at rest<a class="headerlink" href="#103-disscube-the-cube-at-rest" title="Permanent link">&para;</a></h2>
+<p><code>disscube</code> converts raw geospatial sources (raster, vector) into derived
+variables aligned to a modeling grid, cataloged for reuse:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SpatialSource  →  Derivation  →  Variable  →  DerivedVariable (Zarr)
+</code></pre></div>
+<ul>
+<li><strong><code>GridSpec</code></strong> is the alignment contract: <code>id</code>, CRS, resolution,
+  bbox — plus a stable <code>cell_id(row, col)</code> (e.g. <code>"AC/5km:R0991C0047"</code>,
+  literally <code>f"{self.id}:R{row:04d}C{col:04d}"</code>), so any variable derived
+  on that grid is comparable cell-by-cell by construction.</li>
+<li><strong><code>SpatialSource</code></strong> is a raw source registered in the catalog — local,
+  HTTP, or S3 — with <code>asset_url</code>, <code>crs</code>, <code>bbox</code>, <code>time</code>.</li>
+<li><strong><code>Derivation</code></strong> is a declarative recipe: which operator, applied to
+  which source, produces which target variable. It's grid-independent —
+  the same <code>Derivation</code> can run against <code>AC/5km</code> or <code>AC/1km</code>, producing
+  two distinct cubes.</li>
+<li><strong><code>DerivedVariable</code></strong> is the materialized product of a recipe on a
+  specific grid: a Zarr <code>asset_url</code>, a <code>spec_hash</code> (deterministic
+  SHA-256 of the recipe + grid — uniquely identifies the variable) and a
+  <code>content_hash</code> (hash of the produced bytes).</li>
+<li><strong><code>CatalogStore</code></strong> is a <code>Protocol</code> (with SQLite and JSON
+  implementations today — a Postgres implementation could replace either
+  without changing any caller) exposing both discovery
+  (<code>search_derived_variables(grid_id, role, tile_id)</code>) and an execution
+  cache (<code>get_derived_by_hash(spec_hash)</code> — a lookup that guarantees an
+  identical recipe on an identical grid is never recomputed).</li>
+</ul>
+<p><strong>One catalog, many cubes.</strong> The grid <em>is</em> the cube's identity — <code>AC/5km</code>
+and <code>AC/1km</code> are different cubes; cell <code>(i, j)</code> in one is not the same
+place as <code>(i, j)</code> in the other. <code>disscube</code> doesn't manage a cube; it
+manages a <em>family</em> of cubes over one shared catalog, where <code>Derivation</code>s
+are reusable recipes and <code>spec_hash</code> (which folds in <code>grid_id</code>) prevents
+collisions between products of different grids.</p>
+<p><strong>Reproducibility as architecture, not discipline.</strong> <code>spec_hash</code> ties
+<em>what was asked for</em> (the recipe) to <em>what was produced</em> (the array) —
+this is a property of the catalog's design, not something that depends
+on a modeler's notes or external documentation. Every derived variable
+carries its own proof of provenance.</p>
+<h2 id="104-basic-flow">10.4 Basic flow<a class="headerlink" href="#104-basic-flow" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">disscube.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">CubeClient</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">disscube.utils.grids</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_local_grid</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">cube</span> <span class="o">=</span> <span class="n">CubeClient</span><span class="p">(</span><span class="n">catalog</span><span class="o">=</span><span class="s2">&quot;catalog.db&quot;</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="s2">&quot;./data/&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">grid</span> <span class="o">=</span> <span class="n">register_local_grid</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AC&quot;</span><span class="p">,</span> <span class="n">bbox_geo</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">73.99</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.62</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.11</span><span class="p">),</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">5_000.0</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">disscube.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialSource</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">cube</span><span class="o">.</span><span class="n">register_spatial_source</span><span class="p">(</span><span class="n">SpatialSource</span><span class="p">(</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mapbiomas_2020&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MapBiomas Acre 2020&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;raster&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">asset_url</span><span class="o">=</span><span class="s2">&quot;data/raw/mapbiomas_2020.tif&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">2020</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">disscube.derivation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Derivation</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">d</span> <span class="o">=</span> <span class="n">Derivation</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s2">&quot;forest_pct&quot;</span><span class="p">,</span> <span class="n">source_id</span><span class="o">=</span><span class="s2">&quot;mapbiomas_2020&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                <span class="n">operator</span><span class="o">=</span><span class="s2">&quot;percentage&quot;</span><span class="p">,</span> <span class="n">class_code</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;driver&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                <span class="n">valid_from</span><span class="o">=</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span> <span class="n">valid_until</span><span class="o">=</span><span class="s2">&quot;2020&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">cube</span><span class="o">.</span><span class="n">derive_declarative</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">grid_id</span><span class="o">=</span><span class="s2">&quot;AC/5km&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="105-the-bridge-from-the-cube-at-rest-to-the-cube-in-motion">10.5 The bridge: from the cube at rest to the cube in motion<a class="headerlink" href="#105-the-bridge-from-the-cube-at-rest-to-the-cube-in-motion" title="Permanent link">&para;</a></h2>
+<p>The integration between the two regimes already exists as code, not as a
+proposal — but it's worth being precise about the actual API, since it's
+easy to assume a shape that isn't there.</p>
+<p><code>CubeClient.load(variable_id, tile_id=None, grid_id=None)</code> loads <strong>one</strong>
+named variable as a plain <code>xr.DataArray</code> — it does not accept a list of
+variables, and there is no module-level <code>disscube.load(...)</code> function.
+The multi-variable handoff into DisSModel is a different, dedicated
+method:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">backend</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">to_lucc_data</span><span class="p">([</span><span class="s2">&quot;forest_pct&quot;</span><span class="p">,</span> <span class="s2">&quot;dist_roads&quot;</span><span class="p">],</span> <span class="n">grid_id</span><span class="o">=</span><span class="s2">&quot;AC/5km&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>CubeClient.to_lucc_data()</code> is, per its own docstring, "the standard
+integration point for the DisSModel ecosystem": it calls <code>load()</code> once
+per requested variable internally and assembles the result directly into
+a <code>dissmodel.geo.raster.backend.RasterBackend</code> — the exact raster
+substrate type from Chapter 2 — with every variable as a named band.
+There is no separate <code>from_xarray()</code> step in this path; <code>to_lucc_data()</code>
+builds the <code>RasterBackend</code> itself. Static variables load as plain <code>(y,
+x)</code> arrays; temporal variables load as <code>(time, y, x)</code> arrays with an
+explicit time axis in <code>backend.time_coords</code>, so a
+<code>RasterModel</code>/<code>RasterCellularAutomaton</code> retrieves a single time slice via
+<code>backend.get(name, time=step)</code> with no change to existing executor code.
+An optional <code>period=(start, end)</code> tuple filters which time slices of a
+temporal variable get loaded — static variables ignore it.</p>
+<p><strong><code>RasterBackend.from_xarray()</code> is the second, independent entry point</strong>
+into the motion regime — for any <code>xr.Dataset</code> with <code>(y, x)</code> or <code>(time, y,
+x)</code> dims and named variables, regardless of who produced it. This
+matters because it means DisSCube is not the <em>only</em> way to feed a
+simulation: an <code>xr.Dataset</code> assembled by <code>odc-stac</code>'s <code>load()</code> from a
+STAC catalog (the Brazil Data Cube, or a catalog <code>disscube</code> might publish
+per 10.9) crosses into the motion regime through the exact same door:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Path A — disscube&#39;s own catalog (spec_hash-tracked provenance)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">backend</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">to_lucc_data</span><span class="p">([</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">,</span> <span class="s2">&quot;solo&quot;</span><span class="p">],</span> <span class="n">grid_id</span><span class="o">=</span><span class="s2">&quot;maranhao/30m&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Path B — any STAC catalog, via odc-stac</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pystac_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odc.stac</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">items</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;https://some-catalog/stac&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brmangue-maranhao&quot;</span><span class="p">],</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">,</span> <span class="s2">&quot;solo&quot;</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:31983&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">backend</span> <span class="o">=</span> <span class="n">RasterBackend</span><span class="o">.</span><span class="n">from_xarray</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># from here on, both paths are identical — the model never knows which door was used</span>
+</code></pre></div>
+<p><code>brmangue-dissmodel</code>'s executor demonstrates the real, shipped version of
+this bridge:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># brmangue/executors/raster_executor.py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nd">@staticmethod</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">from_cube</span><span class="p">(</span><span class="n">backend</span><span class="p">:</span> <span class="n">RasterBackend</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Adapts a RasterBackend from DisSCube to the internal format</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">    expected by BrmangueRasterExecutor (backend, meta, start_time).&quot;&quot;&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="n">backend</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="n">backend</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{}}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">return</span> <span class="n">backend</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">start_time</span>
+</code></pre></div>
+<p>And the actual synchronization mechanism that lets <code>FloodModel</code> and
+<code>MangroveModel</code> share one backend safely within the same tick is
+<code>dissmodel.geo.raster.sync_model.SyncRasterModel</code> — both models subclass
+it and declare <code>self.land_use_types = ["uso", "alt", "solo"]</code> in
+<code>setup()</code>; <code>SyncRasterModel.pre_execute()</code>/<code>post_execute()</code> then freezes
+each into a <code>&lt;name&gt;_past</code> array in the shared <code>RasterBackend</code> before and
+after every step, so both models read the same frozen state during a
+tick — the Python equivalent of TerraME's <code>cell.past[attr]</code>. This is the
+strongest real-world validation of the "motion" regime design: two
+models, one grid, one clock, no risk of one seeing the other's partial
+write.</p>
+<h3 id="terrame-fillcellularspace-correspondence">TerraME <code>fillCellularSpace</code> correspondence<a class="headerlink" href="#terrame-fillcellularspace-correspondence" title="Permanent link">&para;</a></h3>
+<p>DisSCube's own <code>docs/terrame_fill_correspondence.md</code> documents this
+directly: DisSCube's derivation layer is "the conceptual successor of
+TerraME's <code>fillCellularSpace</code>" (the <em>Fill Cells</em> operation), reformulated
+as a reproducible, catalogued data-cube layer. TerraME populates a
+cellular space cell-by-cell in Lua through fill <em>strategies</em> (<code>area</code>,
+<code>presence</code>, <code>count</code>, <code>distance</code>, <code>percentage</code>, <code>majority</code>, <code>average</code>,
+...); DisSCube keeps the same semantic vocabulary but expresses each
+strategy as a typed, auto-registered <code>Operator</code>:</p>
+<table>
+<thead>
+<tr>
+<th>TerraME fill strategy</th>
+<th>DisSCube operator</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>presence</code></td>
+<td><code>presence</code></td>
+<td>implemented</td>
+</tr>
+<tr>
+<td><code>area</code> / <code>coverage</code> / <code>percentage</code></td>
+<td><code>percentage</code> (window-based)</td>
+<td>implemented, requires <code>class_code</code></td>
+</tr>
+<tr>
+<td><code>majority</code> / <code>mode</code></td>
+<td><code>majority</code> (window-based)</td>
+<td>implemented; ties resolve to smallest class value</td>
+</tr>
+<tr>
+<td><code>minority</code></td>
+<td><code>minority</code> (window-based)</td>
+<td>implemented</td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td><code>count</code></td>
+<td>implemented (proximity operator)</td>
+</tr>
+<tr>
+<td><code>distance</code></td>
+<td><code>min_distance</code></td>
+<td>implemented (EDT × resolution)</td>
+</tr>
+<tr>
+<td><code>average</code> / <code>mean</code></td>
+<td><code>mean</code></td>
+<td>implemented</td>
+</tr>
+<tr>
+<td><code>sum</code></td>
+<td><code>sum</code></td>
+<td>implemented</td>
+</tr>
+<tr>
+<td><code>minimum</code> / <code>maximum</code></td>
+<td><code>min</code> / <code>max</code></td>
+<td>implemented</td>
+</tr>
+<tr>
+<td><code>stdev</code> / <code>standardDeviation</code></td>
+<td><code>std</code> (window-based)</td>
+<td>implemented, true per-cell std over valid pixels</td>
+</tr>
+<tr>
+<td><code>attribute</code> (value copy)</td>
+<td><code>attribute</code></td>
+<td>implemented (vector)</td>
+</tr>
+</tbody>
+</table>
+<p>The document is explicit that "the advance is not the set of operations
+— those are deliberately faithful to TerraME — but the engineering
+around them": every derived product carries a deterministic <code>spec_hash</code>
+for reproducibility, categorical/std operators aggregate over real
+per-cell windows on a grid-origin-snapped fine array (so a 30m→1000m
+resampling is well-defined rather than silently approximated), and
+per-cell coverage/dominance purity is computed as first-class metadata —
+"implicit in TerraME; here it is named and measurable." The same document
+also names a known gap relative to TerraME: vector-source fractional
+coverage is currently rasterized rather than area-weighted (matching the
+"Known Limitations" caveat in the Summary below).</p>
+<p><code>to_lucc_data()</code>'s own docstring lists three explicitly <strong>open contract
+decisions</strong> ("to be resolved before 1.0") worth knowing before relying on
+it in a pipeline:</p>
+<ol>
+<li>Whether year-only temporal format (<code>"2020"</code>) is validated at
+   construction time, or left to fail silently later.</li>
+<li>Whether a temporal variable with all slices outside <code>period</code> should be
+   skipped with a warning (current behavior), raise, or return NaN — the
+   caller currently cannot distinguish "static, so <code>period</code> was ignored"
+   from "existed but fell outside the requested range".</li>
+<li>Whether requesting variables that are <em>all</em> filtered out by <code>period</code>
+   should raise, instead of silently returning a <code>RasterBackend</code> that
+   holds no data (current behavior).</li>
+</ol>
+<h2 id="106-relationship-to-chapter-7-disslucc">10.6 Relationship to Chapter 7 (DisSLUCC)<a class="headerlink" href="#106-relationship-to-chapter-7-disslucc" title="Permanent link">&para;</a></h2>
+<p>There is no direct Python import from <code>disslucc-continuous</code> or
+<code>disslucc-discrete</code> into <code>disscube</code> today — the integration is a
+<em>contract</em> match, not a dependency. <code>disslucc-continuous</code>'s
+<code>ClueLikeRasterExecutor.load()</code> is documented to return "the <code>RasterBackend</code>
+... expos[ing] bands named after <code>land_use_types</code>" — precisely the object
+shape <code>to_lucc_data()</code> produces. In practice, the pipeline looks like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">cube</span>    <span class="o">=</span> <span class="n">CubeClient</span><span class="p">(</span><span class="n">catalog</span><span class="o">=</span><span class="s2">&quot;catalog.db&quot;</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="s2">&quot;./data/&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">backend</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">to_lucc_data</span><span class="p">(</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="p">[</span><span class="s2">&quot;forest_pct&quot;</span><span class="p">,</span> <span class="s2">&quot;dist_roads&quot;</span><span class="p">,</span> <span class="s2">&quot;assentamen&quot;</span><span class="p">,</span> <span class="s2">&quot;uc_us&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">grid_id</span><span class="o">=</span><span class="s2">&quot;AC/5km&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># feed the backend as a driver source into a disslucc-continuous</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># raster model / executor — same RasterBackend contract as Chapter 2</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">potential</span> <span class="o">=</span> <span class="n">PotentialLinearRegression</span><span class="p">(</span><span class="n">gdf</span><span class="o">=...</span><span class="p">,</span> <span class="n">potential_data</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+</code></pre></div>
+<p>In other words: DisSCube is the piece of the ecosystem responsible for
+turning raw MapBiomas-style raster/vector sources into the named,
+grid-aligned driver variables (<code>assentamen</code>, <code>dist_riobr</code>, <code>fertilidad</code>,
+...) that show up as <code>betas</code> keys in a <code>disslucc-continuous</code>/
+<code>disslucc-discrete</code> TOML config (Chapter 7, 9.5) — it is the data
+preparation stage upstream of the LUCC potential/allocation components,
+not a runtime dependency of them.</p>
+<h2 id="107-multiple-cubes-and-coupling">10.7 Multiple cubes and coupling<a class="headerlink" href="#107-multiple-cubes-and-coupling" title="Permanent link">&para;</a></h2>
+<p>Three design questions come up whenever more than one grid is in play,
+each with a concrete answer in the current codebase:</p>
+<p><strong>Does changing the grid create a new cube?</strong> Yes — the grid is the
+cube's identity (10.3). The catalog is inherently multi-cube; a
+<code>Derivation</code> is reusable across grids, but each instantiation on a
+distinct grid is a distinct cube, with its own <code>spec_hash</code>-tracked
+provenance.</p>
+<p><strong>Does a model use only one cube?</strong> A model <em>instance</em>, yes — a cellular
+automaton's state lives on one grid, because its transition rule assumes
+cell-by-cell alignment between state and drivers. <code>Environment</code> (Chapter
+2), on the other hand, already coordinates multiple <em>models</em> — the
+one-cube constraint is per model, not per simulation (<code>FloodModel</code> and
+<code>MangroveModel</code> share one <code>RasterBackend</code>, one grid, 10.5).</p>
+<p><strong>Do two cubes in play require coupling?</strong> It depends on when information
+crosses the boundary:</p>
+<ul>
+<li><strong>Static crossing</strong> (before the simulation starts) is regridding — a
+  <code>disscube</code> job. Resampling a variable from one grid to another is just
+  another <code>Derivation</code>, with its own <code>spec_hash</code>. The model itself never
+  sees two grids.</li>
+<li><strong>Dynamic crossing</strong> (during the run, with tick-by-tick feedback
+  between two models on different grids) is real coupling, and needs
+  runtime translation. The vocabulary for it already exists in the
+  catalog — <code>SpatialRelation</code> (<code>source_grid_id</code>, <code>target_grid_id</code>,
+  <code>strategy: "simple" | "chooseone" | "keepinboth"</code>, confirmed directly
+  in <code>disscube/models/grid.py</code>) — but it has no consumer yet: no pipeline
+  stage reads it during computation today (which is exactly why it's
+  deliberately excluded from <code>spec_hash</code> — including it would make the
+  cache key sensitive to metadata that doesn't affect the result). The
+  missing piece is an <code>Exchange</code>-style component registered in
+  <code>Environment</code> like any other model, applying <code>SpatialRelation</code> each
+  tick to translate state between two <code>RasterBackend</code>s.</li>
+</ul>
+<h2 id="108-positioning-disscube-and-the-brazil-data-cube">10.8 Positioning: <code>disscube</code> and the Brazil Data Cube<a class="headerlink" href="#108-positioning-disscube-and-the-brazil-data-cube" title="Permanent link">&para;</a></h2>
+<p>It's worth situating <code>disscube</code> against the wider Brazilian Earth
+observation stack, because the comparison sharpens exactly what this
+chapter has been building toward — a data cube used for <em>simulation</em>,
+not only <em>observation</em>.</p>
+<p><strong>The NDVI contrast.</strong> The canonical thing a data cube does well is
+something like NDVI: <code>(B08 - B04) / (B08 + B04)</code>, computed independently
+per cell and per date, with no dependency on any neighbor or any earlier
+time step. That's precisely why a <em>lazy</em> cube (<code>xarray</code> + Dask) handles
+it well — the whole computation parallelizes trivially, and whether to
+materialize is a free choice made once, at the end
+(<code>.median(dim="time").compute()</code>). If, instead of NDVI, the computation
+were "spread fire cell-by-cell, one year after another," no step of that
+lazy pipeline would work — it needs <code>RasterBackend</code>, the tick loop, the
+<code>_past</code> snapshot, arrays materialized from tick zero. NDVI is exactly the
+case where a lazy cube shines <em>because it lacks</em> the dimension the motion
+regime exists to resolve. Observation (NDVI, classification, change
+detection) is point-to-point and lives at rest; simulation (LUCC, coastal
+dynamics, fire spread) is sequential-with-state and lives in motion.</p>
+<p><strong>Brazil Data Cube (BDC).</strong> The BDC is production infrastructure for
+<em>observation</em> cubes — analysis-ready satellite mosaics, indexed via STAC.
+Everything typically computed over it (NDVI, time-series classification)
+is point-to-point, living entirely in the rest regime — DisSModel doesn't
+compete with that; it <em>consumes</em> that kind of data as an input. The
+complexity DisSModel adds isn't one of volume (the BDC processes
+terabytes of national-scale imagery, and is objectively larger on that
+axis) — it's one of <em>kind</em>: state that depends on the previous step,
+something an observation cube never needed to solve because observation
+has no "next step," only "next capture."</p>
+<p><strong>A note on sourcing.</strong> This section reflects positioning discussion
+about an external system (the BDC) that doesn't live in this book's
+sibling-repo tree, so treat it as context for where <code>disscube</code> sits in
+the wider landscape, not as a claim about DisSCube's own tested
+behavior — everything about <code>disscube</code> itself in 10.3–10.7 is grounded
+in its source and its own <code>docs/</code>.</p>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Register a grid and a raster <code>SpatialSource</code> following 10.4, then
+   derive a <code>percentage</code> variable. Why does the <code>percentage</code> operator
+   require <code>class_code</code> while <code>mean</code>/<code>sum</code>/<code>std</code> don't (see the operator
+   table in the README)?</li>
+<li>Call <code>cube.load("forest_pct", grid_id="AC/5km")</code> without a <code>tile_id</code>
+   on a grid where the same variable was derived for multiple tiles.
+   Per DisSCube's documented limitations, what does <code>load()</code> do instead
+   of raising an error — and why is "always specify <code>tile_id</code> in
+   multi-tile workloads" the recommended workaround rather than a fix?</li>
+<li><code>Derivation.purity_threshold</code> is included in the <code>spec_hash</code> cache key
+   but is not applied to the output. What concrete problem could this
+   cause if you set <code>purity_threshold=0.9</code> expecting it to filter noisy
+   cells, then compared two runs with different thresholds?</li>
+<li>Vector-source operators (<code>majority</code>, <code>percentage</code>, <code>attribute</code>,
+   <code>presence</code>, <code>minority</code>) estimate cell coverage by rasterizing and
+   counting pixels, not by exact geometric intersection area. Describe a
+   scenario (grid resolution vs. source polygon size) where this
+   approximation would meaningfully diverge from true area-weighted
+   coverage — and what the README recommends as a workaround.</li>
+<li>Using <code>to_lucc_data()</code>'s three open contract decisions (10.5) as a
+   checklist, write a short test plan for a pipeline that combines a
+   static variable (<code>dist_roads</code>) and a temporal one (<code>forest_pct</code> with
+   a <code>period</code> filter) — what would you assert about the resulting
+   <code>RasterBackend</code> in each case?</li>
+<li><code>SyncRasterModel</code> (10.5) requires every subclass to declare
+   <code>self.land_use_types</code> in <code>setup()</code> and never write <code>&lt;name&gt;_past</code>
+   arrays manually. What would go wrong — concretely, in <code>FloodModel</code> or
+   <code>MangroveModel</code> — if a subclass wrote to a <code>_past</code> array itself
+   instead of leaving it to <code>pre_execute</code>/<code>post_execute</code>?</li>
+<li><code>SpatialRelation</code> is persisted in the catalog and deliberately
+   excluded from <code>spec_hash</code> (10.7) because no pipeline stage reads it
+   yet. If an <code>Exchange</code> component were added tomorrow that <em>did</em> read
+   it during a run, would <code>SpatialRelation</code> then need to join
+   <code>spec_hash</code>? Justify your answer using the same reasoning the
+   <code>Derivation.spec_hash()</code> docstring gives for excluding it today.</li>
+<li>Using the NDVI-vs-fire-spread contrast in 10.8, classify each of the
+   following as "rest" or "motion": (a) computing NDVI for one Sentinel-2
+   scene, (b) simulating mangrove migration under sea-level rise for 88
+   annual steps, (c) resampling a MapBiomas raster onto a new grid before
+   a simulation starts, (d) two coupled models exchanging state every
+   tick across different grids via an <code>Exchange</code> component.</li>
+</ol>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>The DisSModel ecosystem's cube story rests on one deliberate split: a
+data cube is used for genuinely different things at rest (catalog,
+analyze, publish) and in motion (mutate every tick, couple models on a
+shared clock), so the ecosystem builds one implementation for each rather
+than forcing one substrate to do both. <code>disscube</code> is the cube at rest:
+<code>SpatialSource → Derivation → Variable → DerivedVariable</code> turns raw
+raster/vector sources into named, grid-aligned variables cached in Zarr
+and cataloged in SQLite/JSON, with <code>spec_hash</code> making reproducibility a
+property of the architecture rather than of documentation discipline.
+<code>RasterBackend</code> is the cube in motion: a materialized, mutable array
+store that <code>Environment</code> (Chapter 2) drives tick by tick, validated
+against two genuinely different domains — <code>disslucc-continuous</code>'s
+regression-driven allocation and <code>brmangue-dissmodel</code>'s two-model,
+<code>SyncRasterModel</code>-coupled coastal automaton. <code>to_lucc_data()</code> and
+<code>RasterBackend.from_xarray()</code> are the two doors between the regimes —
+one tied to <code>disscube</code>'s own catalog, one open to any STAC-sourced
+<code>xarray.Dataset</code> — and neither leaks a <code>disscube</code>-specific type into
+model code (Chapters 2 and 7). The package is explicitly <strong>Alpha</strong>: its
+own "Known Limitations" document in-memory/single-tile processing with
+no lazy or distributed execution, pixel-counted (not area-weighted)
+vector aggregation, silent first-tile disambiguation in <code>load()</code>, and a
+<code>SpatialRelation</code>/<code>purity_threshold</code> vocabulary that's modeled but not
+yet wired into the pipeline — none of which blocks the core declarative
+flow, but all of which matter before trusting a continental-scale
+(<code>BR/1km</code>) production run.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
