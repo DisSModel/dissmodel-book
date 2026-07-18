@@ -4,6 +4,9 @@
 
 Implemented by the [`dissmodel-ca`](https://github.com/DisSModel/dissmodel-ca) package.
 
+> **Live demo:** try the models in this chapter directly in the browser —
+> [dissmodel-ca-demo on Hugging Face Spaces](https://huggingface.co/spaces/profsergiocosta/dissmodel-ca-demo).
+
 ## Learning objectives
 
 - Install and use the `dissmodel-ca` extension

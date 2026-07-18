@@ -4,6 +4,9 @@
 
 Implemented by the [`dissmodel-sysdyn`](https://github.com/DisSModel/dissmodel-sysdyn) package.
 
+> **Live demo:** try the models in this chapter directly in the browser —
+> [dissmodel-sysdyn-demo on Hugging Face Spaces](https://huggingface.co/spaces/profsergiocosta/dissmodel-sysdyn-demo).
+
 ## Learning objectives
 
 - Install and explore the system dynamics model library
