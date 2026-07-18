@@ -25,21 +25,22 @@ where applicable (e.g. `brmangue-dissmodel`).
 | CLUE-S-like (discrete) | `disslucc-discrete` |
 | TerraLib | `geopandas` / `rasterio` |
 | FillCell | `disscube` / `disslucc_continuous.io` |
-| `Agent`/`Society` | `dissmodel-abm` — see Ch. 5 (Agent-Based Modeling) |
+| `Agent`/`Society` | `dissmodel-abm` — see Ch. 6 (Agent-Based Modeling) |
 | `init(self)` | `setup()` |
 | `execute(self)` | `execute()` |
 
 ## 11.3 Step-by-step incremental migration
 
 1. **Identify the original model's paradigm.** A TerraME `CellularSpace`
-   with a per-cell rule maps to Chapter 4 (`dissmodel-ca`,
-   `CellularAutomaton`); a stock/flow model maps to Chapter 6
-   (`dissmodel-sysdyn`, plain `Model` + `@track_plot`); a LUCCME-style
-   continuous allocation maps to `disslucc-continuous`, and a CLUE-S-like
-   discrete allocation to `disslucc-discrete` (Chapter 7); a coupled
-   raster/vector domain model in the style of BR-MANGUE maps to the
-   `SpatialModel`/`RasterModel` pair directly (Chapter 8 as a worked
-   example).
+   with a per-cell rule maps to Chapter 5 (`dissmodel-ca`,
+   `CellularAutomaton`); a stock/flow model maps to Chapter 4
+   (`dissmodel-sysdyn`, plain `Model` + `@track_plot`); a TerraME `Agent`/
+   `Society` model maps to Chapter 6 (`dissmodel-abm`, `AgentModel`/
+   `Society`); a LUCCME-style continuous allocation maps to
+   `disslucc-continuous`, and a CLUE-S-like discrete allocation to
+   `disslucc-discrete` (Chapter 7); a coupled raster/vector domain model
+   in the style of BR-MANGUE maps to the `SpatialModel`/`RasterModel`
+   pair directly (Chapter 8 as a worked example).
 
 2. **Choose the corresponding satellite package** (or, if none fits,
    build directly on `dissmodel.core`/`dissmodel.geo` as `dissmodel-ca`
@@ -105,7 +106,7 @@ LUCCME output on a known dataset, using whichever comparison granularity
 
 1. Take a hypothetical TerraME model with a `CellularSpace` where each
    cell's `execute(self)` looks only at its 4 cardinal neighbors. Using
-   11.2's equivalence table and Chapter 4's `FireModel` as a reference,
+   11.2's equivalence table and Chapter 5's `FireModel` as a reference,
    write the class skeleton (imports, base class, neighborhood strategy)
    you'd start from in DisSModel — you don't need to implement `rule()`,
    just get the setup right.
@@ -139,8 +140,9 @@ raster/vector checks, `disslucc-continuous`'s tolerance-based benchmark,
 `disslucc-discrete`'s exact Lab6 parity) all treat "runs without errors"
 as necessary but nowhere near sufficient; the actual bar is numerical
 agreement with the original TerraME/LUCCME output on a known dataset,
-automated in CI wherever possible. Where the original model's paradigm
-has no direct one-to-one package yet (this book's Chapter 5 flags one
-such gap around agent-based modeling), the safest path is building
-directly on `dissmodel.core`/`dissmodel.geo`, the same foundation every
-satellite package in this ecosystem is built on.
+automated in CI wherever possible. Even where a direct satellite package
+exists (`dissmodel-ca`, `dissmodel-sysdyn`, `dissmodel-abm`, `disslucc-*`),
+it may not cover every TerraME feature yet — Chapter 6, 6.6 documents
+`dissmodel-abm`'s own gaps (no raster substrate, no social networks, no
+state machines) as a concrete example of checking a package's stated
+scope before assuming a migration is complete.

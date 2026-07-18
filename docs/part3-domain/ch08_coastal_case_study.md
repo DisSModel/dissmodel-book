@@ -80,7 +80,7 @@ in 8.2.
    numerically, versus just "close enough for this threshold"?
 3. The flood model uses a "push-based neighbourhood algorithm faithful to
    the original TerraME implementation" (Bezerra et al., 2013). Contrast
-   this with `CellularAutomaton.rule(idx)` from Chapter 4, which is a
+   this with `CellularAutomaton.rule(idx)` from Chapter 5, which is a
    *pull* model. Why does sea-level propagation need a push model instead
    of a pull rule?
 4. Run the golden-CSV validation (`validation_executor.py`) with the

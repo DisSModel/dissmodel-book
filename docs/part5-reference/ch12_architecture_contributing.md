@@ -13,7 +13,7 @@
 1. **Minimal core, additive extensions.** `dissmodel-ca`, `dissmodel-abm`,
    `dissmodel-sysdyn` depend on the core as regular packages — none
    modifies the core directly.
-2. **Protective layers over the substrate.** `Society`/`Agent` (Ch. 5) is
+2. **Protective layers over the substrate.** `Society`/`Agent` (Ch. 6) is
    the canonical example: model code never touches `self.gdf` directly.
 3. **Configuration decoupled from code.** `dissmodel-configs` (Ch. 9)
    treats parameterization as an external, PR-versioned registry, not
@@ -29,7 +29,7 @@ close to consistent, not exact:
 
 | Package | Pattern |
 |---|---|
-| `dissmodel-ca`, `dissmodel-sysdyn` | `dissmodel-<paradigm>` |
+| `dissmodel-ca`, `dissmodel-sysdyn`, `dissmodel-abm` | `dissmodel-<paradigm>` |
 | `disslucc-continuous`, `disslucc-discrete` | `disslucc-<allocation-style>` (a domain family of its own) |
 | `brmangue-dissmodel` | `<domain>-dissmodel` (reversed order) |
 | `disscube` | standalone, no `dissmodel`/domain prefix |
@@ -57,7 +57,8 @@ your-package/
     notebooks/
   tests/
   docs/ + mkdocs.yml   # present in dissmodel-ca, dissmodel-sysdyn, disscube;
-                        # absent in disslucc-discrete and brmangue-dissmodel
+                        # dissmodel-abm ships docs/ (agent.md) without mkdocs.yml;
+                        # absent entirely in disslucc-discrete and brmangue-dissmodel
 ```
 
 `dissmodel-platform` is the one exception worth calling out: it has no
@@ -135,21 +136,20 @@ enforcement: a minimal, dependency-only core; satellite packages that
 extend it additively rather than modifying it; configuration
 (`dissmodel-configs`) kept out of executor code entirely; and one
 repository per paradigm/domain/operational layer. None of this is unique
-per package — `dissmodel-ca`, `dissmodel-sysdyn`, `disslucc-continuous`/
-`disslucc-discrete`, `brmangue-dissmodel`, and `disscube` all reuse the
-same `Model`/`SpatialModel`/`RasterModel`/`ModelExecutor` contracts from
-Chapter 2, which is precisely what makes a new satellite package
-addable without touching `dissmodel` itself — register a TOML in
-`dissmodel-configs` and it's runnable on the platform. Contributing
-follows the same standard open-source shape (issues, PRs, tests, PEP 8)
-with one CI-enforced detail specific to this codebase: `>>>` docstring
-examples are executed as doctests and must be self-contained, or CI
-fails. The honest caveats belong in this chapter too, not hidden: the
-platform is MVP-stage with no security hardening, `disscube`'s
-declarative API is still Alpha, satellite packages don't yet report test
-coverage in a standardized way, and — as this book's own sweep for
-Chapter 5 found — at least one paradigm mapping in the ecosystem's own
-documentation (`Agent`/`Society` in `dissmodel-abm`) currently describes
-a package that doesn't exist in any of the sibling repositories. Anyone
-evaluating this ecosystem for production use should treat those gaps as
-current state, not oversight.
+per package — `dissmodel-ca`, `dissmodel-sysdyn`, `dissmodel-abm`,
+`disslucc-continuous`/`disslucc-discrete`, `brmangue-dissmodel`, and
+`disscube` all reuse the same `Model`/`SpatialModel`/`RasterModel`/
+`ModelExecutor` contracts from Chapter 2, which is precisely what makes a
+new satellite package addable without touching `dissmodel` itself —
+register a TOML in `dissmodel-configs` and it's runnable on the platform.
+Contributing follows the same standard open-source shape (issues, PRs,
+tests, PEP 8) with one CI-enforced detail specific to this codebase:
+`>>>` docstring examples are executed as doctests and must be
+self-contained, or CI fails. The honest caveats belong in this chapter
+too, not hidden: the platform is MVP-stage with no security hardening,
+`disscube`'s declarative API is still Alpha, satellite packages don't yet
+report test coverage in a standardized way, and `dissmodel-abm` itself is
+explicit about what it doesn't cover yet — no raster substrate, no social
+networks, no state machines (Chapter 6, 6.6). Anyone evaluating this
+ecosystem for production use should treat those gaps as current state,
+not oversight.

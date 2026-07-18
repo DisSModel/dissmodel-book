@@ -1,4 +1,4 @@
-# Chapter 4: Cellular Automata
+# Chapter 5: Cellular Automata
 
 *Part II — Simulation Paradigms*
 
@@ -10,13 +10,13 @@ Implemented by the [`dissmodel-ca`](https://github.com/DisSModel/dissmodel-ca) p
 - Know the classic and research models included
 - Choose between vector and raster substrate for a CA model
 
-## 4.1 Overview
+## 5.1 Overview
 
 `dissmodel-ca` provides a collection of cellular automata models
 implemented on top of the `dissmodel` engine, in both vector
 (GeoDataFrame) and raster (NumPy) versions.
 
-## 4.2 Included models
+## 5.2 Included models
 
 | Model | Substrate | Description |
 |---|---|---|
@@ -29,7 +29,7 @@ implemented on top of the `dissmodel` engine, in both vector
 | `Parasit` | Vector | Host-parasite spatial dynamics |
 | `Interspecific` | Vector | Grass species competition model |
 
-## 4.3 Installation and quick start
+## 5.3 Installation and quick start
 
 ```bash
 pip install .
@@ -38,7 +38,7 @@ streamlit run examples/streamlit/ca_all.py
 jupyter lab examples/notebooks/ca_game_of_life.ipynb
 ```
 
-## 4.4 Repository structure
+## 5.4 Repository structure
 
 - `src/dissmodel_ca/models/` — core implementations (the "Science" layer)
 - `examples/notebooks/` — 15+ didactic notebooks (in Portuguese)
@@ -48,7 +48,7 @@ jupyter lab examples/notebooks/ca_game_of_life.ipynb
 ## Exercises
 
 1. `CellularAutomaton.rule(idx)` is an abstract method — every model in
-   4.2 must implement it. Open `src/dissmodel_ca/models/fire_model.py`
+   5.2 must implement it. Open `src/dissmodel_ca/models/fire_model.py`
    and identify how `FireModel.rule(idx)` decides a cell's next
    `FireState` (`FOREST`/`BURNING`/`BURNED`) based on its Rook neighbors.
    Why does the model use `Rook` instead of the default `Queen`
@@ -63,7 +63,7 @@ jupyter lab examples/notebooks/ca_game_of_life.ipynb
    starting state instead of doing it in `__init__`. Explain why — what
    does `initialize()` have access to that `__init__` doesn't, given the
    `Model.__init__` → `setup(**kwargs)` lifecycle from Chapter 2?
-4. Pick one model from 4.2 you haven't read yet (e.g. `Anneal`,
+4. Pick one model from 5.2 you haven't read yet (e.g. `Anneal`,
    `Excitable`, or `Interspecific`) and, from its docstring and `rule()`
    body alone, write a one-paragraph description of the phenomenon it
    models and which neighborhood strategy it relies on.
