@@ -79,9 +79,9 @@ nav:
     - "Ch 3: Installation and first model": part1-core/ch03_getting_started.md
 
   - Part II — Simulation Paradigms:
-    - "Ch 4: Cellular Automata": part2-paradigms/ch04_ca.md
-    - "Ch 5: Agent-Based Modeling": part2-paradigms/ch05_abm.md
-    - "Ch 6: System Dynamics": part2-paradigms/ch06_sysdyn.md
+    - "Ch 4: System Dynamics": part2-paradigms/ch04_sysdyn.md
+    - "Ch 5: Cellular Automata": part2-paradigms/ch05_ca.md
+    - "Ch 6: Agent-Based Modeling": part2-paradigms/ch06_abm.md
 
   - "Part III — Domain Modeling: Land Use & Coastal Systems":
     - "Ch 7: DisSLUCC — Land Use and Cover Change Modeling": part3-domain/ch07_disslucc.md

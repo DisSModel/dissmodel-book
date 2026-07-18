@@ -1,4 +1,4 @@
-# Chapter 6: System Dynamics
+# Chapter 4: System Dynamics
 
 *Part II — Simulation Paradigms*
 
@@ -10,7 +10,7 @@ Implemented by the [`dissmodel-sysdyn`](https://github.com/DisSModel/dissmodel-s
 - Run models via CLI, Streamlit, and notebooks
 - Recognize the categories of available models
 
-## 6.1 Installation
+## 4.1 Installation
 
 `dissmodel-sysdyn`'s own README shows `pip install dissmodel-sysdyn`, but
 the package has no PyPI release (no PyPI badge, no publish workflow) —
@@ -22,7 +22,7 @@ extension package (Chapter 3):
 pip install "git+https://github.com/DisSModel/dissmodel-sysdyn.git"
 ```
 
-## 6.2 Included models by category
+## 4.2 Included models by category
 
 | Category | Models |
 |---|---|
@@ -33,7 +33,7 @@ pip install "git+https://github.com/DisSModel/dissmodel-sysdyn.git"
 | Environment | Mono Lake Water Balance |
 | Stochasticity | Random Walk |
 
-## 6.3 Usage
+## 4.3 Usage
 
 ```bash
 python examples/cli/sysdyn_sir.py
@@ -49,7 +49,7 @@ experiments (e.g. `sysdyn_daisyworld.ipynb` on the Gaia hypothesis,
 ## Exercises
 
 1. Open `src/dissmodel_sysdyn/models/sir.py`. Unlike every model in
-   Chapter 4, `SIR` extends `dissmodel.core.Model` directly, not
+   Chapter 5, `SIR` extends `dissmodel.core.Model` directly, not
    `SpatialModel`. Explain why a system-dynamics model has no need for a
    `gdf`/`backend` or a neighborhood.
 2. `SIR` is decorated with three stacked `@track_plot("Susceptible",
@@ -80,7 +80,7 @@ equations each tick. The `@track_plot` decorator is the piece that turns
 any tracked attribute into an automatically-charted time series with no
 extra plumbing, which is why every model in the package — from `SIR` to
 `Daisyworld` to the `Lorenz` attractor — can be dropped into the same
-Streamlit explorer (`sysdyn_all.py`) used for CA models in Chapter 4. The
+Streamlit explorer (`sysdyn_all.py`) used for CA models in Chapter 5. The
 14 notebooks are this package's main teaching surface: each pairs a
 scientific framing (epidemiology, ecology, thermodynamics, deterministic
 chaos) with the exact stock/flow equations implemented in

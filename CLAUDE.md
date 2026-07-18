@@ -33,9 +33,9 @@ marker instead of guessing.
 | 1 | part1-core/ch01_why_dissmodel.md | dissmodel (README, trajectory) |
 | 2 | part1-core/ch02_core_concepts.md | dissmodel/src (core/, executor/, geo/) |
 | 3 | part1-core/ch03_getting_started.md | dissmodel/examples |
-| 4 | part2-paradigms/ch04_ca.md | dissmodel-ca |
-| 5 | part2-paradigms/ch05_abm.md | dissmodel-abm |
-| 6 | part2-paradigms/ch06_sysdyn.md | dissmodel-sysdyn |
+| 4 | part2-paradigms/ch04_sysdyn.md | dissmodel-sysdyn |
+| 5 | part2-paradigms/ch05_ca.md | dissmodel-ca |
+| 6 | part2-paradigms/ch06_abm.md | dissmodel-abm |
 | 7 | part3-domain/ch07_disslucc.md | disslucc-continuous, disslucc-discrete |
 | 8 | part3-domain/ch08_coastal_case_study.md | brmangue-dissmodel |
 | 9 | part4-infra/ch09_platform.md | dissmodel-platform, dissmodel-configs, brmangue-qgis |
