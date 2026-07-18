@@ -356,7 +356,7 @@ crosses the boundary:
   `Environment` like any other model, applying `SpatialRelation` each
   tick to translate state between two `RasterBackend`s.
 
-## 10.8 Positioning: `disscube`, the Brazil Data Cube, and INPE's eCube draft
+## 10.8 Positioning: `disscube` and the Brazil Data Cube
 
 It's worth situating `disscube` against the wider Brazilian Earth
 observation stack, because the comparison sharpens exactly what this
@@ -389,29 +389,9 @@ axis) — it's one of *kind*: state that depends on the previous step,
 something an observation cube never needed to solve because observation
 has no "next step," only "next capture."
 
-**eCube.** INPE has circulated a draft specification, internally called
-eCube, for a cube of *derived variables for modeling* — one step past
-BDC's observation focus. Its fill-cell operator list (majority, presence,
-minimum distance, percentage, sum, mean, std, count) converges almost
-one-to-one with `disscube`'s own `OPERATOR_REGISTRY` (10.5), and both
-trace back to the same TerraME `fillCellularSpace` ancestor. This is
-independent convergence, not coordination — two efforts starting from the
-same TerraME lineage arriving at the same design is a signal that the
-design is the natural shape of the problem, not an idiosyncrasy of either
-implementation. It's also worth being precise about what that
-convergence does *not* cover: eCube's own scope is the data layer only —
-it names external "consumer applications" (LUCC-style models) as clients,
-the same relationship `disscube` has to `disslucc-continuous`/
-`disslucc-discrete` (10.6). Nothing in a data-cube specification, eCube
-included, plays the role `RasterBackend`/`Environment` play here — the
-motion regime is the half of this ecosystem's design that a data-cube
-spec, by definition, doesn't build.
-
 **A note on sourcing.** This section reflects positioning discussion
-about external systems (BDC, eCube) that don't live in this book's
-sibling-repo tree — eCube in particular is an unpublished, in-progress
-INPE specification, not something verifiable against
-`../../dissmodel/*`. Treat it as context for where `disscube` sits in
+about an external system (the BDC) that doesn't live in this book's
+sibling-repo tree, so treat it as context for where `disscube` sits in
 the wider landscape, not as a claim about DisSCube's own tested
 behavior — everything about `disscube` itself in 10.3–10.7 is grounded
 in its source and its own `docs/`.
