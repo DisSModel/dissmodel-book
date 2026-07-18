@@ -116,7 +116,7 @@ LUCCME output on a known dataset, using whichever comparison granularity
    question about their model's output (from 11.4) determines the
    answer?
 3. `disscube` has no direct code dependency from `disslucc-continuous`/
-   `disslucc-discrete` (Chapter 10, 10.4) — the connection is a shared
+   `disslucc-discrete` (Chapter 10, 10.6) — the connection is a shared
    `RasterBackend` contract. If you were migrating a TerraME model whose
    driver variables came from a raw MapBiomas raster, at which step in
    11.3's roadmap would `disscube` enter the picture, and why not
