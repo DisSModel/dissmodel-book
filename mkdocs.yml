@@ -1,0 +1,96 @@
+site_name: DisSModel Book
+site_description: >
+  Technical reference and ecosystem guide for DisSModel — a Python-native,
+  FAIR-aligned, cloud-ready alternative to TerraME/LUCCME.
+site_author: "LambdaGeo Research Group"
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  font: false
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/lambdageo.css
+
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+nav:
+  - Home: index.md
+
+  - Part I — DisSModel Core:
+    - "Ch 1: Why DisSModel — trajectory and motivation": part1-core/ch01_why_dissmodel.md
+    - "Ch 2: Core concepts (SpatialModel, ModelExecutor, substrates)": part1-core/ch02_core_concepts.md
+    - "Ch 3: Installation and first model": part1-core/ch03_getting_started.md
+
+  - Part II — Simulation Paradigms:
+    - "Ch 4: Cellular Automata": part2-paradigms/ch04_ca.md
+    - "Ch 5: Agent-Based Modeling": part2-paradigms/ch05_abm.md
+    - "Ch 6: System Dynamics": part2-paradigms/ch06_sysdyn.md
+
+  - "Part III — Domain Modeling: Land Use & Coastal Systems":
+    - "Ch 7: DisSLUCC — Land Use and Cover Change Modeling": part3-domain/ch07_disslucc.md
+    - "Ch 8: Case Study — Coastal Dynamics": part3-domain/ch08_coastal_case_study.md
+
+  - Part IV — Data & Infrastructure:
+    - "Ch 9: The DisSModel Platform — Execution & Registry": part4-infra/ch09_platform.md
+    - "Ch 10: Spatial Data Cubes": part4-infra/ch10_disscube.md
+
+  - Part V — Migration & Reference:
+    - "Ch 11: Migrating from TerraME/LUCCME to DisSModel": part5-reference/ch11_migration.md
+    - "Ch 12: Architecture decisions and how to contribute": part5-reference/ch12_architecture_contributing.md
