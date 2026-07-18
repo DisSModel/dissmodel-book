@@ -71,12 +71,42 @@ change to existing executor code. An optional `period=(start, end)` tuple
 filters which time slices of a temporal variable get loaded — static
 variables ignore it.
 
-> **Note on sourcing.** The chapter's original TODO pointed to a
-> `terrame_fill_correspondence.md` file as a TerraME FillCell mapping —
-> that file does not exist anywhere in `disscube`. There is currently no
-> documented DisSCube ↔ TerraME FillCell correspondence; the closest
-> analogue is conceptual (both prepare a cellular grid's driving
-> variables before a simulation runs), not a named/documented mapping.
+### TerraME `fillCellularSpace` correspondence
+
+DisSCube's own `docs/terrame_fill_correspondence.md` documents this
+directly: DisSCube's derivation layer is "the conceptual successor of
+TerraME's `fillCellularSpace`" (the *Fill Cells* operation), reformulated
+as a reproducible, catalogued data-cube layer. TerraME populates a
+cellular space cell-by-cell in Lua through fill *strategies* (`area`,
+`presence`, `count`, `distance`, `percentage`, `majority`, `average`,
+...); DisSCube keeps the same semantic vocabulary but expresses each
+strategy as a typed, auto-registered `Operator`:
+
+| TerraME fill strategy | DisSCube operator | Status |
+|---|---|---|
+| `presence` | `presence` | implemented |
+| `area` / `coverage` / `percentage` | `percentage` (window-based) | implemented, requires `class_code` |
+| `majority` / `mode` | `majority` (window-based) | implemented; ties resolve to smallest class value |
+| `minority` | `minority` (window-based) | implemented |
+| `count` | `count` | implemented (proximity operator) |
+| `distance` | `min_distance` | implemented (EDT × resolution) |
+| `average` / `mean` | `mean` | implemented |
+| `sum` | `sum` | implemented |
+| `minimum` / `maximum` | `min` / `max` | implemented |
+| `stdev` / `standardDeviation` | `std` (window-based) | implemented, true per-cell std over valid pixels |
+| `attribute` (value copy) | `attribute` | implemented (vector) |
+
+The document is explicit that "the advance is not the set of operations
+— those are deliberately faithful to TerraME — but the engineering
+around them": every derived product carries a deterministic `spec_hash`
+for reproducibility, categorical/std operators aggregate over real
+per-cell windows on a grid-origin-snapped fine array (so a 30m→1000m
+resampling is well-defined rather than silently approximated), and
+per-cell coverage/dominance purity is computed as first-class metadata —
+"implicit in TerraME; here it is named and measurable." The same document
+also names a known gap relative to TerraME: vector-source fractional
+coverage is currently rasterized rather than area-weighted (matching the
+"Known Limitations" caveat in 10's Summary below).
 
 `to_lucc_data()`'s own docstring lists three explicitly **open contract
 decisions** ("to be resolved before 1.0") worth knowing before relying on
