@@ -94,3 +94,6 @@ nav:
   - Part V — Migration & Reference:
     - "Ch 11: Migrating from TerraME/LUCCME to DisSModel": part5-reference/ch11_migration.md
     - "Ch 12: Architecture decisions and how to contribute": part5-reference/ch12_architecture_contributing.md
+
+  - Part VI — API Reference:
+    - "Ch 13: API Reference": part6-api/ch13_api_reference.md
