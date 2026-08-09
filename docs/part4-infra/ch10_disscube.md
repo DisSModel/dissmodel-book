@@ -396,7 +396,30 @@ the wider landscape, not as a claim about DisSCube's own tested
 behavior — everything about `disscube` itself in 10.3–10.7 is grounded
 in its source and its own `docs/`.
 
-## Exercises
+## 10.9 Theory: resolution and geometric sampling
+
+Real-world spatial data arrives in incompatible representations — satellite imagery, road shapefiles,
+point layers — at different formats, resolutions, and extents. Before any model runs, this has to be
+**homogenized** into a common grid: the road/port/protected-area example from Chapter 7 works because
+distance-to-road, distance-to-port, and presence-in-protected-area — three different vector formats — all
+become attributes of the *same* cells the deforestation model runs on.
+
+**Resolution** is a three-way trade-off, not a free parameter: it's limited by the resolution of the
+input data itself, by the computational cost of processing the resulting grid, and by the process under
+study (a local fire model needs far finer resolution than a global land-cover trend).
+
+Before an aggregation strategy (the `mean`/`majority`/`presence`/... operators in §10.5) even runs, a
+prior decision has to be made — **when does a pixel belong to a cell?**
+
+- **Overlap**: a pixel counts toward every cell it intersects, even partially — the same pixel can
+  contribute to several neighboring cells.
+- **Centroid**: a pixel counts only toward the cell containing its center — each pixel belongs to exactly
+  one cell.
+
+This choice changes the pixel count per cell at every boundary, and therefore the output of whichever
+aggregation operator runs afterward — it is worth checking explicitly rather than assuming a default.
+
+
 
 1. Register a grid and a raster `SpatialSource` following 10.4, then
    derive a `percentage` variable. Why does the `percentage` operator
