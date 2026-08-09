@@ -94,3 +94,24 @@ nav:
   - Part V — Migration & Reference:
     - "Ch 11: Migrating from TerraME/LUCCME to DisSModel": part5-reference/ch11_migration.md
     - "Ch 12: Architecture decisions and how to contribute": part5-reference/ch12_architecture_contributing.md
+
+  - Part VI — API Reference:
+    - "Ch 13: API Reference": part6-api/ch13_api_reference.md
+
+  - Part VII — TerraME Compatibility Course:
+    - "Overview": part7-course/index.md
+    - "Lesson 1: Introduction to Computing": part7-course/lesson01_intro_computing.md
+    - "Lesson 2: Python for DisSModel": part7-course/lesson02_python_for_dissmodel.md
+    - "Lesson 3: System Dynamics": part7-course/lesson03_system_dynamics.md
+    - "Lesson 4: Feedbacks": part7-course/lesson04_feedbacks.md
+    - "Lesson 5: Epidemics": part7-course/lesson05_epidemics.md
+    - "Lesson 6: Chaos": part7-course/lesson06_chaos.md
+    - "Lesson 7: Predator-Prey (differential equations)": part7-course/lesson07_predator_prey_ode.md
+    - "Lesson 8: Daisyworld": part7-course/lesson08_daisyworld.md
+    - "Lesson 9: Cellular Automaton": part7-course/lesson09_cellular_automaton.md
+    - "Lesson 10: Fire in the Forest": part7-course/lesson10_fire_in_the_forest.md
+    - "Lesson 11: Cellular Data": part7-course/lesson11_cellular_data.md
+    - "Lesson 12: Deforestation": part7-course/lesson12_deforestation.md
+    - "Lesson 13: Agent-based Modeling": part7-course/lesson13_agent_based_modeling.md
+    - "Lesson 14: Predator-Prey (agents)": part7-course/lesson14_predator_prey_abm.md
+    - "Lesson 15: Summary / Migrating from TerraME": part7-course/lesson15_summary_migration.md

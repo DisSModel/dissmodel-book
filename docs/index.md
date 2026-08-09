@@ -16,6 +16,9 @@ alternative to **TerraME/LUCCME** (INPE/CCST).
 - **Starting from scratch?** Follow Part I in order.
 - **Want a specific paradigm** (cellular automata, agents, system dynamics)? Go to Part II.
 - **Want to run on production/cluster?** See Part IV.
+- **Need a class/function reference while coding?** See [Part VI — API Reference](part6-api/ch13_api_reference.md).
+- **Coming from the TerraME course and want a lesson-by-lesson, side-by-side comparison** (real Lua code
+  next to real Python code, model by model)? See [Part VII — TerraME Compatibility Course](part7-course/index.md).
 
 ## Ecosystem map
 
@@ -31,6 +34,18 @@ graph TD
     A --> I[Ch 9: DisSModel Platform]
     H --> I
 ```
+
+## Book structure
+
+| Part | Content |
+|---|---|
+| I — DisSModel Core | why it exists, core concepts, installation |
+| II — Simulation Paradigms | System Dynamics, Cellular Automata, Agent-Based Modeling |
+| III — Domain Modeling | Land Use & Cover Change, coastal dynamics case study |
+| IV — Data & Infrastructure | execution platform, spatial data cubes |
+| V — Migration & Reference | migrating from TerraME/LUCCME, architecture & contributing |
+| VI — API Reference | module-by-module class/function reference |
+| VII — TerraME Compatibility Course | 15 lessons, theory + side-by-side TerraME↔DisSModel code |
 
 ## Status
 
