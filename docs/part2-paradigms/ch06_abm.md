@@ -271,7 +271,103 @@ no `dissmodel-abm` equivalent yet, function by function — worth checking
 before assuming a TerraME model can be migrated (Chapter 11) without any
 gaps.
 
-## Exercises
+## 6.7 Theory: bottom-up modelling
+
+Agent-based Modelling appears under several names in the literature — ABM, ABMS, Multi-agent Systems,
+Individual-based Modelling — across economics, sociology, ecology, and political science. What unifies
+them is a **bottom-up** approach: complex system behaviour emerges from the interaction of discrete
+agents, rather than being specified as an aggregate equation the way Chapter 4's System Dynamics models
+are. An **agent** is any actor able to affect itself, its environment, and other agents.
+
+Helen Couclelis (UCSB) classifies ABM applications along two axes — natural/artificial agent ×
+natural/artificial environment:
+
+| | Natural environment | Artificial environment |
+|---|---|---|
+| **Natural agent** | Behavioral experiments | Descriptive model |
+| **Artificial agent** | Engineering applications | e-science |
+
+`PredatorPreyModel` (§6.8) sits in "descriptive model" — artificial agents standing in for real animals,
+inside a simplified artificial environment.
+
+Nigel Gilbert's case for why ABM is worth the extra complexity (relative to Chapter 4's aggregate models)
+comes down to three things a bottom-up model can represent directly, instead of assuming: **structure**
+(it emerges from agent interaction rather than being imposed), **agency** (agents have goals and beliefs
+that drive action), and **dynamics** (agents move, learn, and change position — spatially and socially —
+over the run). ABM also handles qualitative and relational data (ethnicity, "who talks to whom") that
+System Dynamics' aggregate continuous quantities cannot represent at all.
+
+## 6.8 Case study: Predator-Prey, from equation to individual
+
+Chapter 4 modelled predator and prey as two continuous stocks under Lotka-Volterra. This section rebuilds
+the same phenomenon bottom-up, translating each ODE parameter into an individual agent rule:
+
+| ODE parameter | Agent rule |
+|---|---|
+| `r` — prey growth | eating pasture raises energy; above a threshold, reproduce (energy halved) |
+| `m` — predator mortality | dies at energy ≤ 0 (applies to both kinds) |
+| `a` — predation | predator searches a neighbor cell/radius; a prey found there is killed |
+| `b` — growth from predation | predator gains energy from the kill; above a threshold, reproduces |
+
+### `PredatorPrey` — TerraME (`logo`) vs `dissmodel-abm`
+
+`logo/lua/PredatorPrey.lua` ties rabbits to a discrete `CellularSpace`: eating turns a `pasture` cell into
+`soil` (regenerating after 4 steps), and predation/reproduction happen through
+`getCell():getNeighborhood():sample()`:
+
+```lua
+model.wolf = Agent{
+    energy = 40,
+    execute = function(self)
+        local cell = self:getCell():getNeighborhood():sample()
+        if cell:isEmpty() then
+            if self.energy >= 50 then
+                local child = self:reproduce(); child:move(cell); self.energy = self.energy / 2
+            else self:move(cell) end
+        elseif cell:getAgent().name == "rabbit" then
+            local prey = cell:getAgent()
+            self.energy = self.energy + prey.energy * 0.2
+            prey:die()
+        end
+        self.energy = self.energy - 4
+        if self.energy < 0 then self:die() end
+    end
+}
+```
+
+`dissmodel_abm.models.predator_prey.PredatorPreyModel` runs on continuous space (`Point` geometry,
+`eat_radius` search) and splits the same logic into five explicit phases instead of interleaving them
+per-agent-type:
+
+```python
+class PredatorPreyModel(AgentModel):
+    def execute(self) -> None:
+        society = self.society
+        for agent in society:                                    # 1. movement
+            agent.walk(step_size=self.step_size, bounds=self.bounds)
+        for agent in society:                                    # 2. metabolism
+            if self.graze_gain and agent.kind == "sheep":
+                agent.energy += self.graze_gain
+            agent.energy -= self.energy_loss
+        self._predation_step(society)                             # 3. predation
+        society.remove_if(lambda agent: agent.energy <= 0)        # 4. death
+        for agent in society.select(lambda a: a.energy >= self.reproduce_threshold):
+            agent.reproduce(energy=self.reproduce_threshold / 2.0) # 5. reproduction
+```
+
+**Known gaps** — this is not a 1:1 numerical port, only a 1:1 architectural one:
+
+- TerraME uses per-species reproduction thresholds (rabbit ≥ 30, wolf ≥ 50); `PredatorPreyModel` has one
+  shared `reproduce_threshold` (default 15) for both kinds.
+- TerraME's predation gain is 20% of the prey's energy at capture (`prey.energy * 0.2`, variable);
+  `dissmodel-abm`'s gain is a fixed `energy_gain` (default 5.0).
+- TerraME's pasture→soil→pasture (4-step) regrowth cycle has no equivalent — `graze_gain` is a flat,
+  unconditional per-step energy gain instead.
+
+Reproducing the original course scenario's numbers requires setting these parameters explicitly at
+instantiation, not relying on the defaults.
+
+
 
 1. Open `src/dissmodel_abm/core/society.py` and `agent_model.py`. Explain
    why `Agent` needs no `__init__`-time snapshot of its data — what

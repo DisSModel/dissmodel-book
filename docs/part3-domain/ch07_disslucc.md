@@ -262,7 +262,43 @@ can be validated against it exactly; if it's expressed as area/percentage
 per cell, continuous is the only one that can represent it without
 lossy discretization.
 
-## Exercises
+## 7.6 Theory: demand, potential, allocation
+
+Land change models connect a system (with ecological, economic, and political drivers) to policy
+decisions — a decision-maker compares scenarios to steer the system toward a desired state. Classic
+top-down models like CLUE, and both DisSLUCC packages, share the same three-submodel loop each time step:
+
+1. **Demand** ("how much?") — the area changing class this step. Can come from historical trend, scenario
+   construction, an economic model, or a Markov transition matrix; `DemandPreComputedValues` (7.3) is the
+   simplest form, a precomputed table.
+2. **Potential** ("where?") — a suitability map from driving-factor layers (distance to roads/ports,
+   protected areas, soil fertility). `PotentialLinearRegression`/`PotentialDLogisticRegression` (7.3–7.4)
+   implement this via regression against those layers, homogenized first through `disscube`'s `fill`
+   operators (Chapter 10).
+3. **Allocation** — spatially distributes the demand following the potential map, via rank ordering,
+   competition (CLUE-S), or another strategy.
+
+### Are land change models cellular automata?
+
+A land change model has a grid, a neighborhood, a finite state set, transition rules, an initial state,
+discrete time, parallel per-cell behaviour, and reads neighbor state to update itself — every criterion a
+cellular automaton (Chapter 5) requires. The difference from `dissmodel-ca`'s models is emphasis and
+disciplinary origin (economic geography vs. mathematics/physics), not formal mechanism.
+
+## 7.7 Calibration, validation, and goodness-of-fit
+
+The MAE/RMSE/kappa benchmarks in 7.3–7.4 are *engineering* validation — checking a Python port against a
+TerraME reference run. That's a different question from the *scientific* validation used when fitting a
+model to real-world data: split the observed timeline into a **calibration** period (used to fit
+parameters) and a **validation** period (held out, checked only after fitting).
+
+Comparing a simulated land-use map to a real one cell-by-cell is often too strict — two runs can be
+"equally good" without matching pixel-for-pixel. Costanza (1989) proposed a **multiscale** fit instead:
+compare the maps in windows of increasing size (3×3, 5×5, 9×9, ...), producing a fit-vs-window-size curve.
+Two maps can have low agreement at the finest resolution but high agreement at a coarser one — still
+informative, unlike a single all-or-nothing cell match.
+
+
 
 1. Run the continuous vector example over the `csAC` dataset
    (`python lab1_vector.py run --input data/input/csAC.zip --param
