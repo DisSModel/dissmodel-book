@@ -4,6 +4,9 @@ Technical reference guide for the **DisSModel** ecosystem — a Python-native,
 FAIR-aligned framework for dynamic spatial modeling, designed as a modern
 alternative to **TerraME/LUCCME** (INPE/CCST).
 
+!!! quote "Acknowledgment"
+    The structure, models, and foundational concepts of this book were heavily inspired by and built upon the [TerraME course material](https://github.com/TerraME/terrame/wiki/course).
+
 !!! info "Relationship to the textbook"
     This book is the **technical reference** for the ecosystem: installation,
     API, architecture, migration guide. For the didactic material on
