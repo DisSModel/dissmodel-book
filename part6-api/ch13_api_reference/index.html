@@ -1,0 +1,2214 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical reference and ecosystem guide for DisSModel — a Python-native, FAIR-aligned, cloud-ready alternative to TerraME/LUCCME.
+">
+      
+      
+        <meta name="author" content="LambdaGeo Research Group">
+      
+      
+      
+        <link rel="prev" href="../../part5-reference/ch12_architecture_contributing/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Ch 13: API Reference - DisSModel Book</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/lambdageo.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-13-api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DisSModel Book" class="md-header__button md-logo" aria-label="DisSModel Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DisSModel Book
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch 13: API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DisSModel Book" class="md-nav__button md-logo" aria-label="DisSModel Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DisSModel Book
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://lambdageo.github.io/ebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⇦ LambdaGeo ebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part I — DisSModel Core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part I — DisSModel Core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch01_why_dissmodel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 1: Why DisSModel — trajectory and motivation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch02_core_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 2: Core concepts (SpatialModel, ModelExecutor, substrates)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1-core/ch03_getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 3: Installation and first model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part II — Simulation Paradigms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part II — Simulation Paradigms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch04_sysdyn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 4: System Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch05_ca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 5: Cellular Automata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-paradigms/ch06_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 6: Agent-Based Modeling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part III — Domain Modeling: Land Use & Coastal Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part III — Domain Modeling: Land Use & Coastal Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-domain/ch07_disslucc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 7: DisSLUCC — Land Use and Cover Change Modeling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part3-domain/ch08_coastal_case_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 8: Case Study — Coastal Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part IV — Data & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part IV — Data & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-infra/ch09_platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 9: The DisSModel Platform — Execution & Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-infra/ch10_disscube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 10: Spatial Data Cubes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part V — Migration & Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part V — Migration & Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reference/ch11_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 11: Migrating from TerraME/LUCCME to DisSModel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-reference/ch12_architecture_contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 12: Architecture decisions and how to contribute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part VI — API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part VI — API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 13: API Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 13: API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-dissmodelcore-clock-and-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 dissmodel.core — clock and lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-dissmodelexecutor-the-four-phase-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 dissmodel.executor — the four-phase lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-cli-run-validate-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 CLI — run, validate, show
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3 CLI — run, validate, show">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-execute-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run — execute the simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-check-the-executor-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validate — check the executor contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-inspect-resolved-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show — inspect resolved parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modeltoml-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model.toml spec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-path-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output path intelligence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-schemas-experimentrecord-datasource-jobrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4 Schemas — ExperimentRecord, DataSource, JobRequest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-testing-executortestharness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.5 Testing — ExecutorTestHarness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136-dissmodelgeo-the-dual-substrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.6 dissmodel.geo — the dual substrate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.6 dissmodel.geo — the dual substrate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-models-terrames-past-copy-formalized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sync models — TerraME's past copy, formalized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filling-grid-attributes-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filling grid attributes — fill()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xarray-interoperability-raster-substrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Xarray interoperability (raster substrate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137-dissmodelio-storage-agnostic-loadsave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.7 dissmodel.io — storage-agnostic load/save
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#138-dissmodelvisualization-chart-map-rastermap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.8 dissmodel.visualization — Chart, Map, RasterMap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#139-shapefile-raster-when-the-substrate-switch-pays-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.9 Shapefile → raster: when the substrate switch pays off
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.9 Shapefile → raster: when the substrate switch pays off">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-the-4500-faster-figure-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the "4,500× faster" figure comes from
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131-dissmodelcore-clock-and-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 dissmodel.core — clock and lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-dissmodelexecutor-the-four-phase-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 dissmodel.executor — the four-phase lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-cli-run-validate-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 CLI — run, validate, show
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3 CLI — run, validate, show">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-execute-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run — execute the simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-check-the-executor-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validate — check the executor contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-inspect-resolved-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show — inspect resolved parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modeltoml-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model.toml spec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-path-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output path intelligence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-schemas-experimentrecord-datasource-jobrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4 Schemas — ExperimentRecord, DataSource, JobRequest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-testing-executortestharness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.5 Testing — ExecutorTestHarness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136-dissmodelgeo-the-dual-substrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.6 dissmodel.geo — the dual substrate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.6 dissmodel.geo — the dual substrate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-models-terrames-past-copy-formalized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sync models — TerraME's past copy, formalized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filling-grid-attributes-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filling grid attributes — fill()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xarray-interoperability-raster-substrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Xarray interoperability (raster substrate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137-dissmodelio-storage-agnostic-loadsave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.7 dissmodel.io — storage-agnostic load/save
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#138-dissmodelvisualization-chart-map-rastermap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.8 dissmodel.visualization — Chart, Map, RasterMap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#139-shapefile-raster-when-the-substrate-switch-pays-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.9 Shapefile → raster: when the substrate switch pays off
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.9 Shapefile → raster: when the substrate switch pays off">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-the-4500-faster-figure-comes-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the "4,500× faster" figure comes from
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-13-api-reference">Chapter 13: API Reference<a class="headerlink" href="#chapter-13-api-reference" title="Permanent link">&para;</a></h1>
+<p><em>Part VI — API Reference</em></p>
+<p>Implemented by the <a href="https://github.com/DisSModel/dissmodel"><code>dissmodel</code></a> core package. This chapter
+consolidates the module-level API documentation that previously lived only in <code>dissmodel</code>'s own
+<code>docs/api/</code> — it is grounded directly in that source, not reconstructed from memory, so it can replace it
+rather than duplicate it.</p>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Know the four-phase executor lifecycle (<code>validate → load → run → save</code>) and wire a new model into it</li>
+<li>Use the CLI (<code>run</code> / <code>validate</code> / <code>show</code>) and read a <code>model.toml</code> spec</li>
+<li>Read and build an <code>ExperimentRecord</code>, and understand what <code>DataSource</code>/<code>JobRequest</code> carry</li>
+<li>Validate an executor's contract with <code>ExecutorTestHarness</code> before opening a PR</li>
+<li>Choose between the vector and raster substrates, and use <code>fill()</code> to populate a grid from real data</li>
+<li>Load/save datasets through <code>dissmodel.io</code>, independent of local disk or S3</li>
+<li>Attach <code>Chart</code>, <code>Map</code>, and <code>RasterMap</code> to a running simulation</li>
+<li>Convert a shapefile straight into a <code>RasterBackend</code>, and know when that trade-off pays off</li>
+</ul>
+<hr />
+<h2 id="131-dissmodelcore-clock-and-lifecycle">13.1 <code>dissmodel.core</code> — clock and lifecycle<a class="headerlink" href="#131-dissmodelcore-clock-and-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Full walkthrough of <code>Model</code>/<code>Environment</code> and the <code>setup → pre_execute → execute → post_execute</code>
+lifecycle is in <a href="../../part1-core/ch02_core_concepts/">Chapter 2</a>. Two details from the core API reference
+are worth adding here because they aren't covered there:</p>
+<p><strong>Instantiation order is enforced, not just conventional</strong> — a <code>Model</code> (or visualization component)
+created before its <code>Environment</code> fails to register:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Environment  →  Model  →  Visualization  →  env.run()
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>     ↑             ↑            ↑                ↑
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  first         second        third           fourth
+</code></pre></div>
+<p><strong>Each model can define its own <code>start_time</code>/<code>end_time</code></strong>, independent of the environment's interval —
+useful for composing models that come online or retire at different points in the same run (e.g. a
+land-use driver that only becomes active after a policy year):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Environment</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">ModelA</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[A] t=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">ModelB</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[B] t=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="mi">2010</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="mi">2016</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">ModelA</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="mi">2012</span><span class="p">)</span>   <span class="c1"># active from 2012 to end</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">ModelB</span><span class="p">(</span><span class="n">end_time</span><span class="o">=</span><span class="mi">2013</span><span class="p">)</span>     <span class="c1"># active from start to 2013</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">env</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<p>Models with no explicit <code>start_time</code>/<code>end_time</code> inherit the environment's interval. All active models
+execute at each tick before the clock advances — this is what makes coupled CA + SysDyn runs inside a
+single <code>env.run()</code> possible (see <a href="../../part2-paradigms/ch06_abm/">§7.4</a>).</p>
+<hr />
+<h2 id="132-dissmodelexecutor-the-four-phase-lifecycle">13.2 <code>dissmodel.executor</code> — the four-phase lifecycle<a class="headerlink" href="#132-dissmodelexecutor-the-four-phase-lifecycle" title="Permanent link">&para;</a></h2>
+<p><code>dissmodel.executor</code> separates scientific logic (the <code>Model</code>) from execution infrastructure (I/O, CLI,
+remote dispatch), so the same model code runs unchanged from a Jupyter cell to a platform worker.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModelExecutor</code></td>
+<td>abstract base class — you implement <code>load</code>, <code>run</code>, <code>save</code></td>
+</tr>
+<tr>
+<td><code>ExecutorRegistry</code></td>
+<td>maps a <code>name</code> string to an executor class, auto-populated via <code>__init_subclass__</code></td>
+</tr>
+<tr>
+<td><code>execute_lifecycle</code></td>
+<td>the single orchestration function shared by the CLI and the platform's <code>job_runner.py</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>validate(record)            # stateless pre-flight checks — no I/O
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>data = load(record)         # resolve URI, apply column/band maps, return data
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>result = run(data, record)  # simulation — no I/O here
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>record = save(result, record)
+</code></pre></div>
+<p>Each phase is timed independently and written to <code>record.metrics</code> automatically (<code>time_validate_sec</code>,
+<code>time_load_sec</code>, <code>time_run_sec</code>, <code>time_save_sec</code>, <code>time_total_sec</code>).</p>
+<p><strong>Minimal implementation:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelExecutor</span><span class="p">,</span> <span class="n">ExperimentRecord</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_cli</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">save_dataset</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyExecutor</span><span class="p">(</span><span class="n">ModelExecutor</span><span class="p">):</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my_model&quot;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">ExperimentRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">gdf</span><span class="p">,</span> <span class="n">checksum</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">record</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="n">checksum</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="k">return</span> <span class="n">gdf</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">ExperimentRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">parameters</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="c1"># ... simulation logic — no I/O here ...</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">return</span> <span class="n">data</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">ExperimentRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExperimentRecord</span><span class="p">:</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="n">uri</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">output_path</span> <span class="ow">or</span> <span class="s2">&quot;output.gpkg&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="n">checksum</span> <span class="o">=</span> <span class="n">save_dataset</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="n">record</span><span class="o">.</span><span class="n">output_path</span>   <span class="o">=</span> <span class="n">uri</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="n">record</span><span class="o">.</span><span class="n">output_sha256</span> <span class="o">=</span> <span class="n">checksum</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>        <span class="n">record</span><span class="o">.</span><span class="n">status</span>        <span class="o">=</span> <span class="s2">&quot;completed&quot;</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="k">return</span> <span class="n">record</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="n">run_cli</span><span class="p">(</span><span class="n">MyExecutor</span><span class="p">)</span>
+</code></pre></div>
+<p>A <code>name</code> class attribute is all that's needed for auto-registration — no boilerplate registration call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExecutorRegistry</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">ExecutorRegistry</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>          <span class="c1"># [&quot;my_model&quot;, ...]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">ExecutorRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;my_model&quot;</span><span class="p">)</span> <span class="c1"># → MyExecutor class</span>
+</code></pre></div>
+<p><code>name</code> is also the key referenced from the TOML model registry (see <a href="../../part4-infra/ch09_platform/">Chapter 9</a>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[model]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_model&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_package&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="133-cli-run-validate-show">13.3 CLI — <code>run</code>, <code>validate</code>, <code>show</code><a class="headerlink" href="#133-cli-run-validate-show" title="Permanent link">&para;</a></h2>
+<p>Adding a <code>__main__</code> block with <code>run_cli(MyExecutor)</code> exposes three subcommands.</p>
+<h3 id="run-execute-the-simulation"><code>run</code> — execute the simulation<a class="headerlink" href="#run-execute-the-simulation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_package.my_executor<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--toml<span class="w">   </span>configs/model.toml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>--input<span class="w">  </span>data/grid.zip<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>--output<span class="w"> </span>results/output.tif<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>--param<span class="w">  </span><span class="nv">end_time</span><span class="o">=</span><span class="m">50</span>
+</code></pre></div>
+<p>After the run, three files are written next to the output:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>output_&lt;id&gt;.tif</code></td>
+<td>simulation result</td>
+</tr>
+<tr>
+<td><code>output_&lt;id&gt;.record.json</code></td>
+<td>full <code>ExperimentRecord</code> (provenance)</td>
+</tr>
+<tr>
+<td><code>profiling_&lt;id&gt;.md</code></td>
+<td>per-phase timing table</td>
+</tr>
+</tbody>
+</table>
+<p>The profiling table exposes <code>Load</code> as a separate phase from <code>Run</code>, so I/O time is never hidden inside
+simulation time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>| Phase    | Time (s) | % of Total |
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>|----------|----------|------------|
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>| Validate | 0.000    | 0.0%       |
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>| Load     | 2.898    | 49.4%      |
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>| Run      | 2.972    | 50.6%      |
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>| Save     | 0.001    | 0.0%       |
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>| Total    | 5.871    | 100%       |
+</code></pre></div>
+<h3 id="validate-check-the-executor-contract"><code>validate</code> — check the executor contract<a class="headerlink" href="#validate-check-the-executor-contract" title="Permanent link">&para;</a></h3>
+<p>Runs <code>ExecutorTestHarness</code> (§13.5) without loading data; add <code>--input</code> to also run a full cycle test.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_package.my_executor<span class="w"> </span>validate<span class="w"> </span>--input<span class="w"> </span>data/grid.zip
+</code></pre></div>
+<h3 id="show-inspect-resolved-parameters"><code>show</code> — inspect resolved parameters<a class="headerlink" href="#show-inspect-resolved-parameters" title="Permanent link">&para;</a></h3>
+<p>Prints the merged parameters from <code>model.toml</code> plus any <code>--param</code> overrides, without running anything:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>-m<span class="w"> </span>my_package.my_executor<span class="w"> </span>show<span class="w"> </span>--toml<span class="w"> </span>configs/model.toml
+</code></pre></div>
+<h3 id="modeltoml-spec"><code>model.toml</code> spec<a class="headerlink" href="#modeltoml-spec" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[model]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_model&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_package&quot;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">[model.parameters]</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">end_time</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="k">[[model.potential]]</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="n">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.74</span>
+</code></pre></div>
+<p>CLI <code>--param</code> flags override TOML values.</p>
+<h3 id="output-path-intelligence">Output path intelligence<a class="headerlink" href="#output-path-intelligence" title="Permanent link">&para;</a></h3>
+<p>To prevent accidental overwrites, the CLI injects the short experiment ID automatically when <code>--output</code>
+doesn't already carry one:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>--output<span class="w"> </span>results/<span class="w">                 </span>→<span class="w">  </span>results/simulacao_ec17096d.tif
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>--output<span class="w"> </span>results/run.tif<span class="w">          </span>→<span class="w">  </span>results/run_ec17096d.tif
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>--output<span class="w"> </span>results/run_ec17096d.tif<span class="w"> </span>→<span class="w">  </span>unchanged
+</code></pre></div>
+<hr />
+<h2 id="134-schemas-experimentrecord-datasource-jobrequest">13.4 Schemas — <code>ExperimentRecord</code>, <code>DataSource</code>, <code>JobRequest</code><a class="headerlink" href="#134-schemas-experimentrecord-datasource-jobrequest" title="Permanent link">&para;</a></h2>
+<p>These are Pydantic models carrying provenance across the full lifecycle. <code>ExperimentRecord</code> is created
+before <code>execute_lifecycle</code> runs, then mutated in place by <code>load</code>, <code>run</code>, and <code>save</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Populated by</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>experiment_id</code></td>
+<td>automatically</td>
+<td>UUID generated at creation</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>automatically</td>
+<td>ISO 8601 timestamp</td>
+</tr>
+<tr>
+<td><code>source.checksum</code></td>
+<td><code>load()</code></td>
+<td>SHA-256 of the input dataset</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>CLI / API</td>
+<td>resolved model parameters</td>
+</tr>
+<tr>
+<td><code>output_path</code></td>
+<td><code>save()</code></td>
+<td>URI of the output file</td>
+</tr>
+<tr>
+<td><code>output_sha256</code></td>
+<td><code>save()</code></td>
+<td>SHA-256 of the output file</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td><code>execute_lifecycle</code></td>
+<td>per-phase timing + model-specific metrics</td>
+</tr>
+<tr>
+<td><code>artifacts</code></td>
+<td><code>save()</code></td>
+<td>named checksums of extra artefacts</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>save()</code></td>
+<td><code>"completed"</code> or <code>"failed"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading a saved record:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor.schemas</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExperimentRecord</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">record</span> <span class="o">=</span> <span class="n">ExperimentRecord</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;output.record.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;time_load_sec&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>A complete <code>record.json</code></strong> looks like this — this is the artifact that makes a run reproducible years
+later, referenced from <a href="../../part5-reference/ch11_migration/">Chapter 11</a>'s validation methodology:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">&quot;experiment_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">&quot;model_commit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f9c12&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">&quot;code_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">&quot;resolved_spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;...TOML snapshot...&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;uri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e3b0c44...&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="nt">&quot;artifacts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;profiling&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256...&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="nt">&quot;metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;time_run_sec&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.15</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;time_total_sec&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.34</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;completed&quot;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong><code>DataSource</code></strong> describes the input; <code>checksum</code> is filled by <code>load()</code>, not before:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">DataSource</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;s3://bucket/input.tif&quot;</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong><code>JobRequest</code></strong> is how the platform API (Chapter 9) accepts a job — it resolves the executor from
+<code>model.class</code>, installs <code>model.package</code>, and builds the <code>ExperimentRecord</code> before dispatch:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor.schemas</span><span class="w"> </span><span class="kn">import</span> <span class="n">JobRequest</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">job</span> <span class="o">=</span> <span class="n">JobRequest</span><span class="p">(</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">model</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;coastal_raster&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>        <span class="s2">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;git+https://github.com/DisSModel/coastal-dynamics@main&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;end_time&quot;</span><span class="p">:</span> <span class="mi">88</span><span class="p">},</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="p">},</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="s2">&quot;uri&quot;</span><span class="p">:</span> <span class="s2">&quot;s3://dissmodel-inputs/grid.zip&quot;</span><span class="p">},</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="135-testing-executortestharness">13.5 Testing — <code>ExecutorTestHarness</code><a class="headerlink" href="#135-testing-executortestharness" title="Permanent link">&para;</a></h2>
+<p>Validates an executor's contract without needing real data — designed to run in a notebook before
+opening a PR, using the same checks CI runs via pytest.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.executor.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExecutorTestHarness</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_package.my_executor</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyExecutor</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">harness</span> <span class="o">=</span> <span class="n">ExecutorTestHarness</span><span class="p">(</span><span class="n">MyExecutor</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">harness</span><span class="o">.</span><span class="n">run_contract_tests</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ExecutorTestHarness — MyExecutor
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>────────────────────────────────────────────────────
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  ✅ name attribute exists
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  ✅ load() is implemented
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  ✅ run() is implemented
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  ✅ save() is implemented
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  ✅ run() signature is correct
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  ✅ save() signature is correct
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>────────────────────────────────────────────────────
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>  All 8 checks passed ✅
+</code></pre></div>
+<p>The signature check catches the most common migration mistake — executors still on the pre-0.4.0
+<code>run(self, record)</code> form fail with a direct message instead of a cryptic traceback:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>❌ run() signature is correct: run() must accept exactly two parameters
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>   (data, record), got [&#39;record&#39;]. Did you update to the 0.4.0 signature?
+</code></pre></div>
+<p><strong>Full lifecycle test</strong> — runs <code>validate → load → run → save</code> against a real (or synthetic) record, for
+smoke-testing after a migration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">harness</span><span class="o">.</span><span class="n">run_with_sample_data</span><span class="p">()</span>   <span class="c1"># synthetic record if none given</span>
+</code></pre></div>
+<p><strong>In pytest:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_contract</span><span class="p">():</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">assert</span> <span class="n">ExecutorTestHarness</span><span class="p">(</span><span class="n">MyExecutor</span><span class="p">)</span><span class="o">.</span><span class="n">run_contract_tests</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span>
+</code></pre></div>
+<hr />
+<h2 id="136-dissmodelgeo-the-dual-substrate">13.6 <code>dissmodel.geo</code> — the dual substrate<a class="headerlink" href="#136-dissmodelgeo-the-dual-substrate" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vector</th>
+<th>Raster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module</td>
+<td><code>dissmodel.geo.vector</code></td>
+<td><code>dissmodel.geo.raster</code></td>
+</tr>
+<tr>
+<td>Data structure</td>
+<td><code>GeoDataFrame</code> (GeoPandas)</td>
+<td><code>RasterBackend</code> (NumPy 2D arrays)</td>
+</tr>
+<tr>
+<td>Grid factory</td>
+<td><code>vector_grid()</code></td>
+<td><code>raster_grid()</code></td>
+</tr>
+<tr>
+<td>Neighbourhood</td>
+<td>Queen / Rook (<code>libpysal</code>)</td>
+<td>Moore / Von Neumann (<code>shift2d</code>)</td>
+</tr>
+<tr>
+<td>Rule pattern</td>
+<td><code>rule(idx)</code> per cell</td>
+<td><code>rule(arrays) → dict</code>, vectorized</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>irregular grids, real-world GIS data</td>
+<td>large grids, performance-critical models</td>
+</tr>
+</tbody>
+</table>
+<p>Both substrates share the same <code>Environment</code> and clock — a vector model and a raster model can run side
+by side in one <code>env.run()</code>.</p>
+<h3 id="sync-models-terrames-past-copy-formalized">Sync models — TerraME's <code>past</code> copy, formalized<a class="headerlink" href="#sync-models-terrames-past-copy-formalized" title="Permanent link">&para;</a></h3>
+<p><code>SyncSpatialModel</code> / <code>SyncRasterModel</code> manage <code>_past</code> snapshots automatically — this is the same
+mechanism referenced in <a href="../../part2-paradigms/ch05_ca/">Chapter 5</a>'s discussion of <code>Life.lua</code>'s
+<code>cell.past.state</code>, now named explicitly instead of left implicit in <code>setup()</code>/<code>execute()</code> timing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.geo.vector.sync_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">SyncSpatialModel</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">LUCCModel</span><span class="p">(</span><span class="n">SyncSpatialModel</span><span class="p">):</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">):</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">land_use_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;outros&quot;</span><span class="p">]</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>        <span class="n">uso_past</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;f_past&quot;</span><span class="p">]</span>   <span class="c1"># state at the beginning of this step</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>        <span class="c1"># ... update self.gdf[&quot;f&quot;] ...</span>
+</code></pre></div>
+<p><code>SyncRasterModel</code> provides the same semantics for <code>RasterBackend</code> arrays. Both expose <code>synchronize()</code>
+publicly for cases where the automatic pre/post-step timing isn't sufficient.</p>
+<h3 id="filling-grid-attributes-fill">Filling grid attributes — <code>fill()</code><a class="headerlink" href="#filling-grid-attributes-fill" title="Permanent link">&para;</a></h3>
+<p><code>fill()</code> initialises columns from spatial data sources, replacing manual cell-by-cell loops:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.geo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fill</span><span class="p">,</span> <span class="n">FillStrategy</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># zonal statistics from a raster</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">fill</span><span class="p">(</span><span class="n">FillStrategy</span><span class="o">.</span><span class="n">ZONAL_STATS</span><span class="p">,</span> <span class="n">vectors</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">raster_data</span><span class="o">=</span><span class="n">raster</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>     <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;alt_&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># minimum distance to a feature layer</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="n">fill</span><span class="p">(</span><span class="n">FillStrategy</span><span class="o">.</span><span class="n">MIN_DISTANCE</span><span class="p">,</span> <span class="n">from_gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">to_gdf</span><span class="o">=</span><span class="n">rivers</span><span class="p">,</span> <span class="n">attr_name</span><span class="o">=</span><span class="s2">&quot;dist_river&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># random sampling by class proportion</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="n">fill</span><span class="p">(</span><span class="n">FillStrategy</span><span class="o">.</span><span class="n">RANDOM_SAMPLE</span><span class="p">,</span> <span class="n">gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;land_use&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># fixed pattern — useful for deterministic tests</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="n">fill</span><span class="p">(</span><span class="n">FillStrategy</span><span class="o">.</span><span class="n">PATTERN</span><span class="p">,</span> <span class="n">gdf</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;zone&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</code></pre></div>
+<p>This is the same vocabulary Chapter 10 maps against TerraME's <code>Layer:fill</code> strategies — <code>fill()</code> here is
+the general-purpose entry point; <code>disscube</code>'s operators (Chapter 10) build on top of it for multi-source,
+multi-resolution ingestion specifically.</p>
+<p>Custom strategies register with a decorator:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.geo.vector.fill</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_strategy</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nd">@register_strategy</span><span class="p">(</span><span class="s2">&quot;my_strategy&quot;</span><span class="p">)</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">fill_my_strategy</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="o">...</span>
+</code></pre></div>
+<h3 id="xarray-interoperability-raster-substrate">Xarray interoperability (raster substrate)<a class="headerlink" href="#xarray-interoperability-raster-substrate" title="Permanent link">&para;</a></h3>
+<p><code>RasterBackend</code> converts to/from <code>xr.Dataset</code>, connecting to the Pangeo ecosystem (Zarr, Dask,
+JupyterHub) — relevant if a model's output needs to feed a larger data-cube pipeline rather than stay a
+standalone GeoTIFF:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">ds</span><span class="o">.</span><span class="n">to_zarr</span><span class="p">(</span><span class="s2">&quot;output.zarr&quot;</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">backend2</span> <span class="o">=</span> <span class="n">RasterBackend</span><span class="o">.</span><span class="n">from_xarray</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</code></pre></div>
+<p>CRS is preserved as a <code>spatial_ref</code> coordinate following the CF-1.8 convention; spatial coordinates come
+from <code>backend.transform</code> (a rasterio <code>Affine</code>) when available.</p>
+<hr />
+<h2 id="137-dissmodelio-storage-agnostic-loadsave">13.7 <code>dissmodel.io</code> — storage-agnostic load/save<a class="headerlink" href="#137-dissmodelio-storage-agnostic-loadsave" title="Permanent link">&para;</a></h2>
+<p>Format detection is automatic (by extension, or an explicit <code>fmt</code>); <code>s3://</code> URIs resolve transparently
+through the configured MinIO/S3 client with no change to model code.</p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th><code>fmt</code></th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.gpkg</code>, <code>.shp</code>, <code>.geojson</code>, <code>.zip</code> (shapefile)</td>
+<td><code>"vector"</code></td>
+<td><code>(GeoDataFrame, checksum)</code></td>
+</tr>
+<tr>
+<td><code>.tif</code>, <code>.tiff</code>, <code>.zip</code> (GeoTIFF)</td>
+<td><code>"raster"</code></td>
+<td><code>((backend, meta), checksum)</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">save_dataset</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">gdf</span><span class="p">,</span> <span class="n">checksum</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;data/grid.gpkg&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">gdf</span><span class="p">,</span> <span class="n">checksum</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;s3://bucket/grid.gpkg&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="n">checksum</span> <span class="o">=</span> <span class="n">save_dataset</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="s2">&quot;results/output.gpkg&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Both functions return a SHA-256 checksum — inside an executor, these are exactly the values that get
+assigned to <code>record.source.checksum</code> and <code>record.output_sha256</code> (§13.4).</p>
+<p><strong><code>vector_to_raster_backend</code></strong> rasterizes a <code>GeoDataFrame</code> when a model needs the raster substrate but the
+input is vector:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.io.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">vector_to_raster_backend</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">backend</span> <span class="o">=</span> <span class="n">vector_to_raster_backend</span><span class="p">(</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">source</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;uso&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;solo&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:31984&quot;</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="p">)</span>
+</code></pre></div>
+<p>The resulting backend includes a <code>"mask"</code> band marking valid (non-nodata) cells.</p>
+<hr />
+<h2 id="138-dissmodelvisualization-chart-map-rastermap">13.8 <code>dissmodel.visualization</code> — <code>Chart</code>, <code>Map</code>, <code>RasterMap</code><a class="headerlink" href="#138-dissmodelvisualization-chart-map-rastermap" title="Permanent link">&para;</a></h2>
+<p>All three components subclass <code>Model</code>, so they update automatically at each simulation step, and all
+three support three output targets: a local <code>matplotlib</code> window, inline Jupyter display, or a Streamlit
+<code>st.empty()</code> placeholder.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Substrate</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Chart</code></td>
+<td>any</td>
+<td>time-series plots of <code>@track_plot</code>-annotated variables</td>
+</tr>
+<tr>
+<td><code>Map</code></td>
+<td>vector (<code>GeoDataFrame</code>)</td>
+<td>dynamic spatial map, redrawn each step</td>
+</tr>
+<tr>
+<td><code>RasterMap</code></td>
+<td>raster (NumPy)</td>
+<td>categorical or continuous raster rendering</td>
+</tr>
+</tbody>
+</table>
+<p><code>@track_plot</code> is the decorator used throughout this book's course chapters (e.g. <code>SIR</code>, <code>Lorenz</code>,
+<code>Coffee</code>) — it marks which attributes <code>Chart</code> collects and how to label/colour them:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">track_plot</span><span class="p">,</span> <span class="n">Chart</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nd">@track_plot</span><span class="p">(</span><span class="s2">&quot;Susceptible&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nd">@track_plot</span><span class="p">(</span><span class="s2">&quot;Infected&quot;</span><span class="p">,</span>    <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nd">@track_plot</span><span class="p">(</span><span class="s2">&quot;Recovered&quot;</span><span class="p">,</span>   <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">SIR</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>    <span class="o">...</span>
+</code></pre></div>
+<p><strong><code>RasterMap</code></strong> is the one component with no prior mention elsewhere in this book — it supports both a
+categorical mode (explicit value → colour/label mapping) and a continuous mode (colormap + colorbar,
+with optional masking):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.visualization.raster_map</span><span class="w"> </span><span class="kn">import</span> <span class="n">RasterMap</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="c1"># categorical</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">RasterMap</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Land Use&quot;</span><span class="p">,</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>          <span class="n">color_map</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;#006400&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;#00008b&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;#d2b48c&quot;</span><span class="p">},</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>          <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Mangrove&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Sea&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Bare soil&quot;</span><span class="p">})</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="c1"># continuous, with masking</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="n">RasterMap</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s2">&quot;alt&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Altimetry&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;terrain&quot;</span><span class="p">,</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>          <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">&quot;Altitude (m)&quot;</span><span class="p">,</span> <span class="n">mask_band</span><span class="o">=</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="n">mask_value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<p>When no display is available (e.g. a headless CI run or a platform worker), frames are written to
+<code>raster_map_frames/&lt;band&gt;_step_NNN.png</code> instead of raising an error.</p>
+<p><strong><code>display_inputs</code></strong> generates Streamlit widgets from a model's type-annotated <code>setup()</code> parameters —
+integers/floats become sliders, booleans become checkboxes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_inputs</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">sir</span> <span class="o">=</span> <span class="n">SIR</span><span class="p">()</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="n">display_inputs</span><span class="p">(</span><span class="n">sir</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="139-shapefile-raster-when-the-substrate-switch-pays-off">13.9 Shapefile → raster: when the substrate switch pays off<a class="headerlink" href="#139-shapefile-raster-when-the-substrate-switch-pays-off" title="Permanent link">&para;</a></h2>
+<p><code>shapefile_to_raster_backend</code> converts any vector file (Shapefile, GeoJSON, GeoPackage) straight into a
+<code>RasterBackend</code>, so a raster model can run on real geographic data with no intermediate GIS step:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Shapefile → GeoDataFrame → rasterize (rasterio.features.rasterize) → NumPy arrays → RasterBackend
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.geo.raster.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">shapefile_to_raster_backend</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="n">b</span> <span class="o">=</span> <span class="n">shapefile_to_raster_backend</span><span class="p">(</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;data/mangue_grid.shp&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>    <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;uso&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;solo&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:31984&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Grid regularity</p>
+<p>Most accurate when the input already contains a <strong>regular grid</strong> of equal-area polygons (the typical
+output of spatial homogenization — Chapter 10). For irregular polygons (municipalities, watersheds),
+cells are burned by centroid or by touch (<code>all_touched</code>); inspect the result before a long run.</p>
+</div>
+<h3 id="where-the-4500-faster-figure-comes-from">Where the "4,500× faster" figure comes from<a class="headerlink" href="#where-the-4500-faster-figure-comes-from" title="Permanent link">&para;</a></h3>
+<p>This book's ecosystem-comparison discussions cite raster being dramatically faster than vector at scale.
+The concrete source is a same-data comparison, run from the same shapefile through both substrates on a
+94,000-cell grid:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># vector — real geometries, Queen neighbourhood</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/mangue_grid.shp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:31984&quot;</span><span class="p">)</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1"># → ~2 min/step @ 94k cells</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="c1"># raster — same data, rasterized once</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="n">b</span> <span class="o">=</span> <span class="n">shapefile_to_raster_backend</span><span class="p">(</span><span class="s2">&quot;data/mangue_grid.shp&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>                                 <span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">,</span> <span class="s2">&quot;solo&quot;</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:31984&quot;</span><span class="p">)</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="c1"># → ~8 ms/step @ 94k cells  (≈ 4,500× faster)</span>
+</code></pre></div>
+<p>The gap is entirely the vectorized NumPy operations (<code>shift2d</code>, <code>focal_sum</code>) replacing per-geometry
+GeoPandas/Shapely operations at every step — the one-time rasterization cost is paid once, not per tick.
+This is the same trade-off Chapter 10 frames as "at rest vs. in motion": pay a conversion cost up front to
+get vectorized speed for the run itself. The benchmark scripts behind this number
+(<code>benchmark_flood_model.py</code>, <code>benchmark_game_of_life.py</code>) ship in the <code>dissmodel</code> repository's
+<code>benchmarks/</code> directory for anyone who wants to reproduce it on their own hardware.</p>
+<p>Saving results back to GeoTIFF closes the loop without leaving the raster substrate:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dissmodel.geo.raster.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_raster_backend</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">save_raster_backend</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;output/flood_result.tif&quot;</span><span class="p">,</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>                     <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uso&quot;</span><span class="p">,</span> <span class="s2">&quot;alt&quot;</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:31984&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
